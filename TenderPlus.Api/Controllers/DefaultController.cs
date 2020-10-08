@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TenderPlus.DBInfra.Models;
 
 namespace TenderPlus.Api.Controllers
 {
@@ -14,7 +15,11 @@ namespace TenderPlus.Api.Controllers
         [HttpGet]
          public async Task<IActionResult> GetVendorInvoices()
         {
-            return  Ok("Hi");
+            TenderPlusDBContext tbl = new TenderPlusDBContext();
+           var data = tbl.Login;
+
+
+            return  Ok(data);
         }
     }
 }
