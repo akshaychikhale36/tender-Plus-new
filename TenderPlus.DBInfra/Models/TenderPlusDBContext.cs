@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace TenderPlus.DBInfra.Models
 {
@@ -35,25 +33,13 @@ namespace TenderPlus.DBInfra.Models
             {
                 entity.HasKey(e => e.TenderId);
 
-                entity.Property(e => e.TenderId)
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.AssigneeId)
-                    .IsRequired()
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
+                entity.Property(e => e.TenderId).ValueGeneratedNever();
 
                 entity.Property(e => e.EndTime).HasColumnType("datetime");
 
                 entity.Property(e => e.FinalBid).HasColumnType("money");
 
                 entity.Property(e => e.InititalBid).HasColumnType("money");
-
-                entity.Property(e => e.ReporteeId)
-                    .IsRequired()
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.StartTime).HasColumnType("datetime");
 
@@ -78,12 +64,11 @@ namespace TenderPlus.DBInfra.Models
 
             modelBuilder.Entity<Login>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasIndex(e => e.UserName)
+                    .HasName("IX_Login")
+                    .IsUnique();
 
-                entity.Property(e => e.Id)
-                    .IsRequired()
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Password)
                     .IsRequired()
@@ -98,9 +83,7 @@ namespace TenderPlus.DBInfra.Models
 
             modelBuilder.Entity<Tender>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Assignee)
                     .IsRequired()
@@ -155,9 +138,11 @@ namespace TenderPlus.DBInfra.Models
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
+                entity.HasIndex(e => e.Email)
+                    .HasName("IX_User")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Aadhar)
                     .IsRequired()
@@ -203,6 +188,12 @@ namespace TenderPlus.DBInfra.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.IdNavigation)
+                    .WithOne(p => p.User)
+                    .HasForeignKey<User>(d => d.Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_User_Login");
             });
 
             OnModelCreatingPartial(modelBuilder);

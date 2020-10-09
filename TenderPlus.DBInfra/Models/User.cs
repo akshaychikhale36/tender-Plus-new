@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace TenderPlus.DBInfra.Models
 {
@@ -11,7 +10,7 @@ namespace TenderPlus.DBInfra.Models
             BiddingReportee = new HashSet<Bidding>();
         }
 
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string UserType { get; set; }
@@ -22,6 +21,7 @@ namespace TenderPlus.DBInfra.Models
         public string PanId { get; set; }
         public string CompanyName { get; set; }
 
+        public virtual Login IdNavigation { get; set; }
         public virtual ICollection<Bidding> BiddingAssignee { get; set; }
         public virtual ICollection<Bidding> BiddingReportee { get; set; }
     }
