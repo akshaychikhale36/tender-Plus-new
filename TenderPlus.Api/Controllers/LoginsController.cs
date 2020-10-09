@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TenderPlus.Core.Manager;
 using TenderPlus.DBInfra.Models;
 
 namespace TenderPlus.Api.Controllers
@@ -12,10 +13,12 @@ namespace TenderPlus.Api.Controllers
     public class LoginsController : ControllerBase
     {
         private readonly TenderPlusDBContext _context;
+        private readonly ILoginCore _loginCore;
 
-        public LoginsController(TenderPlusDBContext context)
+        public LoginsController(TenderPlusDBContext context, ILoginCore loginCore )
         {
             _context = context;
+            _loginCore = loginCore;
         }
 
         // GET: api/Logins

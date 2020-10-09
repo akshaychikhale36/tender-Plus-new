@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TenderPlus.DBInfra.Manager
+﻿namespace TenderPlus.DBInfra.Manager
 {
-    interface ITenderDBManager
+    public interface ITenderDBManager
     {
     }
 }

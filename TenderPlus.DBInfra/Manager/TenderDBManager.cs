@@ -1,6 +1,6 @@
 ﻿namespace TenderPlus.DBInfra.Manager
 {
-    public interface IUserDBManager
+    public class TenderDBManager : ITenderDBManager
     {
     }
 }

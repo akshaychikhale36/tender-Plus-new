@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using TenderPlus.Core.Manager;
 using TenderPlus.DBInfra.Models;
 
 namespace TenderPlus.Api
@@ -46,6 +47,7 @@ namespace TenderPlus.Api
             });
 
             services.AddDbContext<TenderPlusDBContext>(option => option.UseSqlServer(Configuration.GetConnectionString("TenderPlusConnectionString")));
+            services.AddTransient<ILoginCore, LoginCore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

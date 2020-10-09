@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TenderPlus.Core.Manager;
 using TenderPlus.DBInfra.Models;
 
 namespace TenderPlus.Api.Controllers
@@ -12,10 +13,12 @@ namespace TenderPlus.Api.Controllers
     public class TendersController : ControllerBase
     {
         private readonly TenderPlusDBContext _context;
+        private readonly ITenderCore _tenderCore;
 
-        public TendersController(TenderPlusDBContext context)
+        public TendersController(TenderPlusDBContext context,ITenderCore tenderCore)
         {
             _context = context;
+            _tenderCore = tenderCore;
         }
 
         // GET: api/Tenders
