@@ -13,9 +13,9 @@ namespace TenderPlus.Api.Controllers
     public class TendersController : ControllerBase
     {
         private readonly TenderPlusDBContext _context;
-        private readonly ITenderCore _tenderCore;
+        private readonly ITenderCoreManager _tenderCore;
 
-        public TendersController(TenderPlusDBContext context,ITenderCore tenderCore)
+        public TendersController(TenderPlusDBContext context,ITenderCoreManager tenderCore)
         {
             _context = context;
             _tenderCore = tenderCore;

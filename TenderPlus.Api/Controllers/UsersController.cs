@@ -13,9 +13,9 @@ namespace TenderPlus.Api.Controllers
     public class UsersController : ControllerBase
     {
         private readonly TenderPlusDBContext _context;
-        private readonly IUserCore _userCore;
+        private readonly IUserCoreManager _userCore;
 
-        public UsersController(TenderPlusDBContext context,IUserCore userCore)
+        public UsersController(TenderPlusDBContext context,IUserCoreManager userCore)
         {
             _context = context;
             _userCore = userCore;

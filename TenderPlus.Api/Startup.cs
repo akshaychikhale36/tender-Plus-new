@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using TenderPlus.Core.Manager;
+using TenderPlus.DBInfra.Manager;
 using TenderPlus.DBInfra.Models;
 
 namespace TenderPlus.Api
@@ -23,7 +25,9 @@ namespace TenderPlus.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+           
+            services.AddAutoMapper(typeof(Startup));
+           
             services.AddCors();
 
             services.AddSwaggerGen(c =>
@@ -47,7 +51,17 @@ namespace TenderPlus.Api
             });
 
             services.AddDbContext<TenderPlusDBContext>(option => option.UseSqlServer(Configuration.GetConnectionString("TenderPlusConnectionString")));
-            services.AddTransient<ILoginCore, LoginCore>();
+
+            services.AddTransient<ILoginCoreManager, LoginCoreManager>();
+            services.AddTransient<IUserCoreManager, UserCoreManager>();
+            services.AddTransient<ITenderCoreManager, TenderCoreManager>();
+            services.AddTransient<IBiddingCoreManager, BiddingCoreManager>();
+
+
+            services.AddTransient<IUserDBManager, UserDBManager>();
+            services.AddTransient<ILoginDBManager, LoginDBManager>();
+            services.AddTransient<ITenderDBManager, TenderDBManager>();
+            services.AddTransient<IBiddingDBManager, BiddingDBManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

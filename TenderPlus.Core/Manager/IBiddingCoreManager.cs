@@ -1,6 +1,6 @@
 ﻿namespace TenderPlus.Core.Manager
 {
-    public interface IBiddingCore
+    public interface IBiddingCoreManager
     {
     }
 }

@@ -13,9 +13,9 @@ namespace TenderPlus.Api.Controllers
     public class BiddingsController : ControllerBase
     {
         private readonly TenderPlusDBContext _context;
-        private readonly IBiddingCore _biddingCore;
+        private readonly IBiddingCoreManager _biddingCore;
 
-        public BiddingsController(TenderPlusDBContext context,IBiddingCore biddingCore)
+        public BiddingsController(TenderPlusDBContext context,IBiddingCoreManager biddingCore)
         {
             _context = context;
             _biddingCore = biddingCore;

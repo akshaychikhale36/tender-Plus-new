@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TenderPlus.Core.Manager
 {
-    public class TenderCore:ITenderCore
+    public class BiddingCoreManager:IBiddingCoreManager
     {
     }
 }

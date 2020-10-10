@@ -13,9 +13,9 @@ namespace TenderPlus.Api.Controllers
     public class LoginsController : ControllerBase
     {
         private readonly TenderPlusDBContext _context;
-        private readonly ILoginCore _loginCore;
+        private readonly ILoginCoreManager _loginCore;
 
-        public LoginsController(TenderPlusDBContext context, ILoginCore loginCore )
+        public LoginsController(TenderPlusDBContext context, ILoginCoreManager loginCore )
         {
             _context = context;
             _loginCore = loginCore;
