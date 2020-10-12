@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TenderPlus.DBInfra.Models;
@@ -12,7 +13,7 @@ namespace TenderPlus.DBInfra.Manager
         {
             _tenderPlusDBContext = tenderPlusDBContext;
         }
-        
+
         private bool LoginExists(string username)
         {
             return _tenderPlusDBContext.Login.Any(e => e.UserName == username);
@@ -40,10 +41,15 @@ namespace TenderPlus.DBInfra.Manager
             return "Success";
         }
 
-        public async Task<Login> GetDBLogin(string username)
+        public async Task<List<Login>> GetDBLogin(string username)
         {
-            var login = await _tenderPlusDBContext.Login.FindAsync(username);
-            return login;
+            var login = from s in _tenderPlusDBContext.Login
+                        where EF.Functions.Like(s.UserName, "%" + username + "%")
+                        select s;
+
+
+            //var login = await _tenderPlusDBContext.Login.FindAsync(username);
+            return login.ToList();
         }
     }
 }
