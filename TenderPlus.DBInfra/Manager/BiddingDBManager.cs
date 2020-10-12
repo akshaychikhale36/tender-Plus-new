@@ -7,10 +7,10 @@ namespace TenderPlus.DBInfra.Manager
 {
     public class BiddingDBManager:IBiddingDBManager
     {
-        private readonly TenderPlusDBContext _context;
-        public BiddingDBManager()
+        private readonly TenderPlusDBContext _tenderPlusDBContext;
+        public BiddingDBManager(TenderPlusDBContext tenderPlusDBContext)
         {
-
+            _tenderPlusDBContext = tenderPlusDBContext;
         }
     }
 }
