@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using System;
+using TenderPlus.Api.Authorize;
 using TenderPlus.Core.Manager;
 using TenderPlus.DBInfra.Manager;
 using TenderPlus.DBInfra.Models;
@@ -26,7 +29,7 @@ namespace TenderPlus.Api
         {
             services.AddControllers();
            
-            services.AddAutoMapper(typeof(Startup));
+            //services.AddAutoMapper(typeof(Startup));
            
             services.AddCors();
 
@@ -49,7 +52,11 @@ namespace TenderPlus.Api
                     }
                 });
             });
-
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddMvc()
+            .AddJsonOptions(options => {
+                options.JsonSerializerOptions.IgnoreNullValues = true;
+            });
             services.AddDbContext<TenderPlusDBContext>(option => option.UseSqlServer(Configuration.GetConnectionString("TenderPlusConnectionString")));
 
             services.AddTransient<ILoginCoreManager, LoginCoreManager>();
@@ -73,7 +80,7 @@ namespace TenderPlus.Api
             }
 
             app.UseHttpsRedirection();
-
+            //app.UseMiddleware<JwtMiddleware>();
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),

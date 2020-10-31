@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TenderPlus.Core.Manager;
+using TenderPlus.Core.Models;
 using TenderPlus.DBInfra.Models;
 
 namespace TenderPlus.Api.Controllers
@@ -23,99 +24,24 @@ namespace TenderPlus.Api.Controllers
 
         // GET: api/Logins
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Login>>> GetLogin()
+        public async Task<ActionResult<Login>> GetLogin(string username,string password)
         {
-            return await _context.Login.ToListAsync();
+
+            var login = await _loginCore.GetLogin(username, password);
+            return Ok(login);
         }
 
-        // GET: api/Logins/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Login>> GetLogin(int id)
-        {
-            var login = await _context.Login.FindAsync(id);
-
-            if (login == null)
-            {
-                return NotFound();
-            }
-
-            return login;
-        }
-
-        // PUT: api/Logins/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutLogin(int id, Login login)
-        {
-            if (id != login.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(login).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LoginExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
 
         // POST: api/Logins
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Login>> PostLogin(Login login)
+        public async Task<ActionResult<string>> PostLogin(LoginCore login)
         {
-            _context.Login.Add(login);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (LoginExists(login.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetLogin", new { id = login.Id }, login);
+            var result=await _loginCore.CreateLogin(login);
+            return result;
         }
-
-        // DELETE: api/Logins/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Login>> DeleteLogin(int id)
-        {
-            var login = await _context.Login.FindAsync(id);
-            if (login == null)
-            {
-                return NotFound();
-            }
-
-            _context.Login.Remove(login);
-            await _context.SaveChangesAsync();
-
-            return login;
-        }
-
+     
         private bool LoginExists(int id)
         {
             return _context.Login.Any(e => e.Id == id);

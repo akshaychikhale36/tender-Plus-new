@@ -41,15 +41,15 @@ namespace TenderPlus.DBInfra.Manager
             return "Success";
         }
 
-        public async Task<List<Login>> GetDBLogin(string username)
+        public async Task<Login> GetDBLogin(string username, string password)
         {
-            var login = from s in _tenderPlusDBContext.Login
-                        where EF.Functions.Like(s.UserName, "%" + username + "%")
-                        select s;
+            //var login = from s in _tenderPlusDBContext.Login
+            //            where EF.Functions.Like(s.UserName, "%" + username + "%")
+            //            select s;
 
 
-            //var login = await _tenderPlusDBContext.Login.FindAsync(username);
-            return login.ToList();
+            var login = await _tenderPlusDBContext.Login.Where(x=>x.UserName==username&& x.Password==password).SingleOrDefaultAsync();
+            return login;
         }
     }
 }

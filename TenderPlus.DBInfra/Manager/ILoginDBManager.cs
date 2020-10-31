@@ -6,8 +6,7 @@ namespace TenderPlus.DBInfra.Manager
 {
     public interface ILoginDBManager
     {
-
         Task<string> CreateDBLogin(Login login);
-        Task<List<Login>> GetDBLogin(string username);
+        Task<Login> GetDBLogin(string username, string password);
     }
 }

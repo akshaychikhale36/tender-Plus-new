@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace TenderPlus.DBInfra.Models
 {
@@ -67,8 +69,6 @@ namespace TenderPlus.DBInfra.Models
                 entity.HasIndex(e => e.UserName)
                     .HasName("IX_Login")
                     .IsUnique();
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Password)
                     .IsRequired()

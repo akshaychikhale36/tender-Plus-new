@@ -1,4 +1,7 @@
-﻿namespace TenderPlus.DBInfra.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace TenderPlus.DBInfra.Models
 {
     public partial class Login
     {
