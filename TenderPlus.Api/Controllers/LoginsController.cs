@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TenderPlus.Api.Authorize;
 using TenderPlus.Core.Manager;
 using TenderPlus.Core.Models;
 using TenderPlus.DBInfra.Models;
+using TenderPlus.Log;
 
 namespace TenderPlus.Api.Controllers
 {
@@ -15,20 +18,39 @@ namespace TenderPlus.Api.Controllers
     {
         private readonly TenderPlusDBContext _context;
         private readonly ILoginCoreManager _loginCore;
+        private IUserService _userService;
+        private ILogger _logger;
 
-        public LoginsController(TenderPlusDBContext context, ILoginCoreManager loginCore )
+        public LoginsController(TenderPlusDBContext context, ILoginCoreManager loginCore ,IUserService userService, ILogger logger)
         {
             _context = context;
             _loginCore = loginCore;
+            _userService = userService;
+            _logger = logger;
         }
 
-        // GET: api/Logins
-        [HttpGet]
-        public async Task<ActionResult<Login>> GetLogin(string username,string password)
+        [HttpPost("authenticate")]
+        public async Task<ActionResult> GetLogin(AuthenticateRequest model)
         {
 
-            var login = await _loginCore.GetLogin(username, password);
-            return Ok(login);
+            //var login = await _loginCore.GetLogin(username, password);
+            //_userService.Authenticate(model);
+
+            //return Ok(login);
+            try
+            {
+                var response = _userService.Authenticate(model);
+
+                if (response == null)
+                    return BadRequest(new { message = "Error encountered in authorizing." });
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.Error("authenticate():" + e);
+                return BadRequest(new { message = "Error encountered in authorizing." });
+            }
         }
 
 

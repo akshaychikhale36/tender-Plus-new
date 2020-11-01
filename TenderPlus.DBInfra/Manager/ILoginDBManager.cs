@@ -8,5 +8,6 @@ namespace TenderPlus.DBInfra.Manager
     {
         Task<string> CreateDBLogin(Login login);
         Task<Login> GetDBLogin(string username, string password);
+        Task<Login> GetDBLoginByUsername(string username);
     }
 }

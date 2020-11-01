@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using TenderPlus.Api.Authorize;
@@ -12,6 +13,7 @@ using TenderPlus.Api.Middleware;
 using TenderPlus.Core.Manager;
 using TenderPlus.DBInfra.Manager;
 using TenderPlus.DBInfra.Models;
+using TenderPlus.Log;
 
 namespace TenderPlus.Api
 {
@@ -52,7 +54,14 @@ namespace TenderPlus.Api
                     }
                 });
             });
+            //4. Appsettings
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            //6.JWT Authorization service
+            services.AddScoped<IUserService, UserService>();
+            IdentityModelEventSource.ShowPII = true;
+            //7.Logger
+            services.AddSingleton<ILogger, Logger>();
             services.AddMvc()
             .AddJsonOptions(options =>
             {

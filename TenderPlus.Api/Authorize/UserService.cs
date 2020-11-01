@@ -7,34 +7,38 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json.Serialization;
+using TenderPlus.Core.Manager;
+using TenderPlus.Core.Models;
+using TenderPlus.DBInfra.Models;
 
 namespace TenderPlus.Api.Authorize
 {
     public interface IUserService
     {
-        AuthenticateResponse Authenticate(AuthenticateRequest model);
-        IEnumerable<User> GetAll();
-        User GetById(int id);
+        AuthenticateResponse Authenticate(AuthenticateRequest model);      
+        LoginCore GetById(string username);
     }
 
     public class UserService : IUserService
     {
-        // TO DO: Move this to DB
-        private List<User> _users = new List<User>
-        {
-            new User { Id = 1, hkey1 = "AngularUI", hkey2 = "ngcli8020" }
-        };
-
+        private ILoginCoreManager _loginCoreManager;
         private readonly AppSettings _appSettings;
-
-        public UserService(IOptions<AppSettings> appSettings)
+        public UserService(ILoginCoreManager loginCoreManager , IOptions<AppSettings> appSettings)
         {
+            _loginCoreManager=loginCoreManager;
             _appSettings = appSettings.Value;
         }
+        // TO DO: Move this to DB
+        //private List<User> _users = new List<User>
+        //{
+        //    new User { Id = 1, hkey1 = "AngularUI", hkey2 = "ngcli8020" }
+        //};
+      
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-            var user = _users.SingleOrDefault(x => x.hkey1 == model.hkey1 && x.hkey2 == model.hkey2);
+            var user = _loginCoreManager.GetLogin(model.username,model.password).GetAwaiter().GetResult();
+            //.SingleOrDefault(x => x.hkey1 == model.username && x.hkey2 == model.password);
 
             // return null if user not found
             if (user == null) return null;
@@ -44,61 +48,52 @@ namespace TenderPlus.Api.Authorize
 
             return new AuthenticateResponse(user, token);
         }
-
-        public IEnumerable<User> GetAll()
-        {
-            return _users;
-        }
-
-        public User GetById(int id)
-        {
-            return _users.FirstOrDefault(x => x.Id == id);
-        }
-
         // helper methods
 
-        private string generateJwtToken(User user)
+        private string generateJwtToken(LoginCore user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.UserName.ToString()) }),
                 Expires = DateTime.UtcNow.AddMinutes(40),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
+
+        LoginCore IUserService.GetById(string username) => _loginCoreManager.GetLoginByusername(username).GetAwaiter().GetResult();
     }
 
     public class AuthenticateRequest
     {
-        public string hkey1 { get; set; }
+        public string username { get; set; }
 
-        public string hkey2 { get; set; }
+        public string password { get; set; }
     }
     public class AuthenticateResponse
     {
         public int Id { get; set; }
-        public string hkey1 { get; set; }
+        public string username { get; set; }
         public string Token { get; set; }
 
 
-        public AuthenticateResponse(User user, string token)
+        public AuthenticateResponse(LoginCore user, string token)
         {
             Id = user.Id;
-            hkey1 = user.hkey1;
+            username = user.UserName;
             Token = token;
         }
 
     }
-    public class User
-    {
-        public int Id { get; set; }
-        public string hkey1 { get; set; }
+    //public class User
+    //{
+    //    public int Id { get; set; }
+    //    public string username { get; set; }
 
-        [JsonIgnore]
-        public string hkey2 { get; set; }
-    }
+    //    [JsonIgnore]
+    //    public string password { get; set; }
+    //}
 }

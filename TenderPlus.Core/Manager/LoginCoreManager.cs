@@ -33,5 +33,12 @@ namespace TenderPlus.Core.Manager
             var result = _mapper.Map<LoginCore>(res);
             return result;
         }
+
+        public async Task<LoginCore> GetLoginByusername(string username)
+        {
+            var res = await _loginDBManager.GetDBLoginByUsername(username);
+            var result = _mapper.Map<LoginCore>(res);
+            return result;
+        }
     }
 }

@@ -51,5 +51,11 @@ namespace TenderPlus.DBInfra.Manager
             var login = await _tenderPlusDBContext.Login.Where(x=>x.UserName==username&& x.Password==password).SingleOrDefaultAsync();
             return login;
         }
+
+        public async Task<Login> GetDBLoginByUsername(string username)
+        {
+            var login = await _tenderPlusDBContext.Login.Where(x => x.UserName == username).SingleOrDefaultAsync();
+            return login;
+        }
     }
 }
