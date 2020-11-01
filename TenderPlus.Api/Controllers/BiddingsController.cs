@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TenderPlus.Api.Authorize;
 using TenderPlus.Core.Manager;
 using TenderPlus.DBInfra.Models;
 
@@ -22,6 +23,7 @@ namespace TenderPlus.Api.Controllers
         }
 
         // GET: api/Biddings
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Bidding>>> GetBidding()
         {
