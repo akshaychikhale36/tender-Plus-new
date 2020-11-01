@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TenderPlus.Core\TenderPlus.Core.csproj" />
     <ProjectReference Include="..\TenderPlus.DBInfra\TenderPlus.DBInfra.csproj" />
+    <ProjectReference Include="..\TenderPlus.Log\TenderPlus.Log.csproj" />
   </ItemGroup>
 
   <ItemGroup>
