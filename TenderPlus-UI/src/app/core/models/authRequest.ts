@@ -1,9 +1,6 @@
 export class AuthRequest {
-  constructor(
-      public hkey1: string,
-      public hkey2: string
-      ) {
-  }
+ username:string;
+ password:string;
 }
 
 export class AuthResponse

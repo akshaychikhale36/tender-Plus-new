@@ -10,11 +10,14 @@ import { MDBBootstrapModule,NavbarModule, WavesModule, ButtonsModule  } from 'an
 import { RouterModule} from '@angular/router'
 import { AuthGuard } from './core/auth.guard';
 import { TokenInterceptorService } from './core/Interceptor/TokenInterceptorService';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './core/auth.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { A11yModule } from '@angular/cdk/a11y';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -30,6 +33,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CommonModule,
+    FormsModule,
+     HttpClientModule,
+	  A11yModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
     NgxPopper,
     MDBBootstrapModule.forRoot(),
     NavbarModule,

@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
 
   }
   canActivate() {
-    if (this.authService.isLoggedIn())
+    if (!this.authService.isLoggedIn())
     {
       this.router.navigate(['/login'],{ queryParams: { page: "Session Expired" } });
       return false;

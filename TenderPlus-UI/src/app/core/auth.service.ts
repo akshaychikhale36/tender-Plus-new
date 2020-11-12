@@ -11,7 +11,7 @@ export class AuthService {
   helper = new JwtHelperService();
   // username: string;
   // password: string;
-  private authapiUrl = 'Logins';
+  private authapiUrl = 'api/Logins';
 
   constructor(private _http: HttpClient,
     private _env: EnvService) { }
@@ -31,7 +31,9 @@ export class AuthService {
     localStorage.removeItem("token");
   }
   getToken(username: string, password: string) {
-    var authReqest = new AuthRequest(username, password);
+    var authReqest = new AuthRequest();
+    authReqest.username=username;
+    authReqest.password=password;
     return new Promise(resolve => {
       // this._env.baseUrl="https://10.100.8.74:9090/";
       this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/authenticate', authReqest).subscribe(data => {
