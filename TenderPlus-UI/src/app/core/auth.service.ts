@@ -52,7 +52,7 @@ export class AuthService {
     const response = new AuthResponse();
     response.id = data.id;
     response.token = data.token;
-    response.hkey1 = data.hkey1;
+    response.username = data.username;
     localStorage.setItem("token", data.token);
     return response;
   }

@@ -6,7 +6,7 @@ export class AuthRequest {
 export class AuthResponse
 {
   public id: string;
-  public hkey1: string;
+  public username: string;
   public token: string;
 
 }

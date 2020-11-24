@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterEvent, RouterModule } from '@angular/router';
+import { AuthService } from 'src/app/core/auth.service';
+import { AuthResponse } from 'src/app/core/models/authRequest';
 
 
 @Component({
@@ -8,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authservice:AuthService, private router:Router) { }
 
   ngOnInit(): void {
   }
-
+  logout(){
+    this.authservice.deleteToken();
+    this.router.navigate(['/login']);
+  }
 }
