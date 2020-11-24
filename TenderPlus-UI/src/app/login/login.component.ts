@@ -21,12 +21,22 @@ export class LoginComponent implements OnInit {
   }
   ValidateRedirect(): void {
     // this.authservice.getToken("string","string").then(res=>);
-    this.getToken();
-console.log(this.res);
-    this.router.navigate(['/dashboard']);
-  }
-  getToken() {
-    return this.authService.getToken(this.UserId, this.Password).then((res)=>this.res);
+     this.getToken();
+    console.log(this.token);
 
   }
+  getToken() {
+    this.authService.getToken(this.UserId, this.Password).subscribe(
+      (res) =>
+      {
+        this.res=res;
+        this.authService.mapToken(res);
+        this.router.navigate(['/dashboard']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
+  }
 }
+

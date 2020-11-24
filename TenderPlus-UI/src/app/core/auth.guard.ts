@@ -17,11 +17,11 @@ export class AuthGuard implements CanActivate {
   canActivate() {
     if (!this.authService.isLoggedIn())
     {
-      this.router.navigate(['/login'],{ queryParams: { page: "Session Expired" } });
+      this.router.navigate(['/home'],{ queryParams: { page: "Session Expired" } });
       return false;
     }
     if (this.authService.isTokenExpired()) {
-      this.router.navigate(['/login'], { queryParams: { page: "Token Expired" } });
+      this.router.navigate(['/home'], { queryParams: { page: "Token Expired" } });
     }
     return true;
   }

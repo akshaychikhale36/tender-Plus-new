@@ -10,13 +10,15 @@ import { AuthResponse } from 'src/app/core/models/authRequest';
   styleUrls: ['./sub-header.component.css']
 })
 export class SubHeaderComponent implements OnInit {
-
+loggedin:boolean;
   constructor(private authservice:AuthService, private router:Router) { }
 
   ngOnInit(): void {
+    this.loggedin =this.authservice.isLoggedIn();
   }
   logout(){
     this.authservice.deleteToken();
     this.router.navigate(['/login']);
   }
+
 }

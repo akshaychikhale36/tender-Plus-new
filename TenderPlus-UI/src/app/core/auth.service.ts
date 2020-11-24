@@ -3,6 +3,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthRequest, AuthResponse } from './models/authRequest';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { EnvService } from './env.service';
+import { catchError, tap, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,17 +32,27 @@ export class AuthService {
   deleteToken(): void {
     localStorage.removeItem("token");
   }
-  getToken(username: string, password: string) {
+  // getToken(username: string, password: string) {
+  //   var authReqest = new AuthRequest();
+  //   authReqest.username=username;
+  //   authReqest.password=password;
+  //   return new Promise(resolve => {
+  //     // this._env.baseUrl="https://10.100.8.74:9090/";
+  //     this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/authenticate', authReqest).subscribe(data => {
+  //       resolve(this.mapToken(data));
+  //     });
+  //   }).catch(this.handleError);;
+
+  // }
+  getToken(username: string, password: string): Observable<any> {
     var authReqest = new AuthRequest();
     authReqest.username=username;
     authReqest.password=password;
-    return new Promise(resolve => {
-      // this._env.baseUrl="https://10.100.8.74:9090/";
-      this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/authenticate', authReqest).subscribe(data => {
-        resolve(this.mapToken(data));
-      });
-    }).catch(this.handleError);;
-
+    return this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/authenticate', authReqest)
+      .pipe(
+        //tap(data => console.log(JSON.stringify(data))),
+        catchError(this.handleError)
+      );
   }
 
   private handleError(error: any): Promise<any> {
