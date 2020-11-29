@@ -1,6 +1,7 @@
 import { registerLocaleData } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AboutUsComponent } from './about-us/about-us.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './core/auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -13,15 +14,15 @@ import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
 
   {
-    path: '\login',
+    path: 'login',
     component: LoginComponent
   },
   {
-    path:'\dashboard',
+    path:'dashboard',
     component: DashboardComponent,canActivate: [AuthGuard]
   },
   {
-    path:'\home',
+    path:'home',
     component: HomeComponent
   },
   {
@@ -29,8 +30,12 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
+    path:'about-us',
+    component: AboutUsComponent
+  },
+  {
     path: '**',
-    component: LoginComponent
+    component: HomeComponent
   },
 ];
 @NgModule({

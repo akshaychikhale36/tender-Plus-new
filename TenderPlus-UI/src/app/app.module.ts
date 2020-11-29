@@ -20,6 +20,9 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { RegisterComponent } from './register/register.component';
+import { AlertPopupComponent } from './shared/alert-popup/alert-popup.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { NgxUiLoaderModule } from "ngx-ui-loader";
 
 
 @NgModule({
@@ -33,24 +36,27 @@ import { RegisterComponent } from './register/register.component';
     DashboardComponent,
     HomeComponent,
     AdminComponent,
-    RegisterComponent
+    RegisterComponent,
+    AlertPopupComponent,
+    AboutUsComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
-     HttpClientModule,
+    HttpClientModule,
 	  A11yModule,
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     NgxPopper,
     MDBBootstrapModule.forRoot(),
     NavbarModule,
     WavesModule,
     ButtonsModule,
-    RouterModule
+    RouterModule,
+    NgxUiLoaderModule
   ],
   providers: [
     AuthService,
