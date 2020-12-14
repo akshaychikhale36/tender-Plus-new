@@ -21,36 +21,44 @@ export class RegisterComponent implements OnInit {
       var title = 'Alert';
       var body = 'Please enter name';
       this.alertPopupComponent.alertMessage(title, body);
+      return false
     } else
     if (!this.registerform.Email) {
       var title = 'Alert';
       var body = 'Please enter Email Id';
       this.alertPopupComponent.alertMessage(title, body);
+      return false
     }else
     if (!this.registerform.Telephone) {
       var title = 'Alert';
       var body = 'Please enter Telephone Number';
       this.alertPopupComponent.alertMessage(title, body);
+      return false
     }else
     if (!this.registerform.CompanyName) {
       var title = 'Alert';
       var body = 'Please enter Company name';
       this.alertPopupComponent.alertMessage(title, body);
+      return false
     }else
     if (!this.registerform.License) {
       var title = 'Alert';
       var body = 'Please enter License Number ';
       this.alertPopupComponent.alertMessage(title, body);
+      return false
     }else
     if (!this.registerform.PanId) {
       var title = 'Alert';
       var body = 'Please enter Pan Number';
       this.alertPopupComponent.alertMessage(title, body);
+      return false
     }else
     if (!this.registerform.Aadhar) {
       var title = 'Alert';
       var body = 'Please enter Aadhar Number';
       this.alertPopupComponent.alertMessage(title, body);
+      return false
     }
+
   }
 }

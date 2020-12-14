@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 using TenderPlus.DBInfra.Models;
 
 namespace TenderPlus.DBInfra.Manager
@@ -11,9 +13,26 @@ namespace TenderPlus.DBInfra.Manager
             _tenderPlusDBContext = tenderPlusDBContext;
         }
 
-        public Task<User> CreateDBUser()
+        public async Task<bool> CreateDBUser(User user)
         {
-            throw new System.NotImplementedException();
+            _tenderPlusDBContext.User.Add(user);
+            try
+            {
+                await _tenderPlusDBContext.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (UserExists(user.Id))
+                {
+                    return false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return true;
         }
 
         public Task<User> GetDBUser()
@@ -24,6 +43,10 @@ namespace TenderPlus.DBInfra.Manager
         public Task<User> UpdateDBUser()
         {
             throw new System.NotImplementedException();
+        }
+        private bool UserExists(int id)
+        {
+            return _tenderPlusDBContext.User.Any(e => e.Id == id);
         }
     }
 }

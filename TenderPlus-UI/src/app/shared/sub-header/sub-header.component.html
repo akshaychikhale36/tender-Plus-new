@@ -1,44 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
-  <a *ngIf=loggedin  class="navbar-brand" routerLink='/dashboard'>Tender Plus +</a>
-  <a  *ngIf=!loggedin class="navbar-brand" routerLink='/home'>Tender Plus +</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <a *ngIf=loggedin class="navbar-brand" routerLink='/dashboard'>Tender Plus +</a>
+  <a *ngIf=!loggedin class="navbar-brand" routerLink='/home'>Tender Plus +</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <!-- <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li> -->
+
       <li class="nav-item">
         <a class="nav-link" routerLink='/about-us'>About us</a>
       </li>
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li> -->
-      <!-- <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li> -->
+
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+
       <div class="container">
-      <!-- <div class="col-4"> -->
-        <button *ngIf=!loggedin class="btn btn-outline-success my-2 my-sm-0" type="submit" routerLink='/register'>Register</button>
-      <!-- </div> -->
-      <!-- <div class="col-4"> -->
-        <button *ngIf=!loggedin class="btn btn-outline-success my-2 my-sm-0" type="submit" routerLink='/login'>login</button>
-      <!-- </div> -->
-    </div>
-      <button *ngIf=loggedin class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)='logout()'>logout</button>
+
+        <button *ngIf=!loggedin class="btn btn-outline-success my-2 my-sm-0" type="submit"
+          routerLink='/register'>Register</button>
+
+        <button *ngIf=!loggedin class="btn btn-outline-success my-2 my-sm-0" type="submit"
+          routerLink='/login'>login</button>
+
+      </div>
+      <button *ngIf=loggedin class="btn btn-outline-success my-2 my-sm-0" type="submit"
+        (click)='logout()'>logout</button>
     </form>
   </div>
 </nav>
