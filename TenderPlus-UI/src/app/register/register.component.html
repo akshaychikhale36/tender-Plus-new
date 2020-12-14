@@ -33,7 +33,7 @@
                             <div class="name">Name</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input  [(ngModel)]=registerform.Name class="input--style-5" type="text" name="Name" >
+                                    <input  [(ngModel)]=registerform.user.Name class="input--style-5" type="text" name="Name" >
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                             <div class="name">Email</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input [(ngModel)]=registerform.Email class="input--style-5" type="text" name="Email">
+                                    <input [(ngModel)]=registerform.user.Email class="input--style-5" type="text" name="Email">
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                             <div class="name">Telephone</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input [(ngModel)]=registerform.Telephone class="input--style-5" type="text" name="Telephone">
+                                    <input [(ngModel)]=registerform.user.Telephone class="input--style-5" type="text" name="Telephone">
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                             <div class="name">CompanyName</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input [(ngModel)]=registerform.CompanyName class="input--style-5" type="email" name="CompanyName">
+                                    <input [(ngModel)]=registerform.user.CompanyName class="input--style-5" type="text" name="CompanyName">
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                             <div class="name">License</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input [(ngModel)]=registerform.License class="input--style-5" type="email" name="License">
+                                    <input [(ngModel)]=registerform.user.License class="input--style-5" type="text" name="License">
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                             <div class="name">Pan Number</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input  [(ngModel)]=registerform.PanId class="input--style-5" type="email" name="PanId">
+                                    <input  [(ngModel)]=registerform.user.PanId class="input--style-5" type="text" name="PanId">
                                 </div>
                             </div>
                         </div>
@@ -87,10 +87,18 @@
                             <div class="name">Aadhar Number</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input [(ngModel)]=registerform.Aadhar class="input--style-5" type="email" name="Aadhar">
+                                    <input [(ngModel)]=registerform.user.Aadhar class="input--style-5" type="text" name="Aadhar">
                                 </div>
                             </div>
                         </div>
+                        <div class="form-row">
+                          <div class="name">Password</div>
+                          <div class="value">
+                              <div class="input-group">
+                                  <input [(ngModel)]=registerform.Password class="input--style-5" type="password" name="password">
+                              </div>
+                          </div>
+                      </div>
 
                         <!-- <div class="form-row m-b-55">
                             <div class="name">Phone</div>
@@ -152,6 +160,7 @@
         </div>
     </div>
     <app-alert-popup></app-alert-popup>
+    <ngx-ui-loader></ngx-ui-loader>
     <!-- Jquery JS-->
     <!-- <script src="vendor/jquery/jquery.min.js"></script>
     Vendor JS

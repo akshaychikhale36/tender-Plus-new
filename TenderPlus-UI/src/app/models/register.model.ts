@@ -1,3 +1,5 @@
+
+
 export  class register {
    Id? :number;
    Name? :string;

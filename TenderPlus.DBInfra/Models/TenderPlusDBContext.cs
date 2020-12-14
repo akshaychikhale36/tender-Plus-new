@@ -149,9 +149,7 @@ namespace TenderPlus.DBInfra.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Avatar)
-                    .IsRequired()
-                    .HasColumnType("image");
+                entity.Property(e => e.Avatar).HasColumnType("image");
 
                 entity.Property(e => e.CompanyName)
                     .IsRequired()
@@ -185,7 +183,6 @@ namespace TenderPlus.DBInfra.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.UserType)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
