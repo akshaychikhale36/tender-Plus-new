@@ -75,6 +75,10 @@ namespace TenderPlus.DBInfra.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Role)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.UserName)
                     .IsRequired()
                     .HasMaxLength(50)

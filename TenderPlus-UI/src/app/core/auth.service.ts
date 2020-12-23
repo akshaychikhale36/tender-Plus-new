@@ -31,6 +31,7 @@ export class AuthService {
 
   deleteToken(): void {
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
   }
   // getToken(username: string, password: string) {
   //   var authReqest = new AuthRequest();
@@ -66,6 +67,7 @@ export class AuthService {
     response.token = data.token;
     response.username = data.username;
     localStorage.setItem("token", data.token);
+    localStorage.setItem("username", data.username);
     return response;
   }
 

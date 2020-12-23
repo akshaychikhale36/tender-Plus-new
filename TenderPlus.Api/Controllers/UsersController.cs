@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TenderPlus.Api.Authorize;
 using TenderPlus.Core.Manager;
 using TenderPlus.Core.Models;
 using TenderPlus.DBInfra.Models;
@@ -66,9 +67,48 @@ namespace TenderPlus.Api.Controllers
             return user;
         }
 
-        private bool UserExists(int id)
+        [Authorize]
+        [Route("postadminuser")]
+        [HttpPost]
+        public async Task<ActionResult<User>> PostAdminUser(LoginCore user)
         {
-            return _context.User.Any(e => e.Id == id);
+
+            try
+            {
+                var response = await _userCore.CreateUser(user);
+
+                if (response == null)
+                    return BadRequest(new { message = "Error encountered in authorizing." });
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.Error("authenticate():" + e);
+                return BadRequest(new { message = "Error encountered in authorizing." });
+            }
         }
+
+        [HttpGet]
+        [Route("getuserbyid")]
+        public async Task<ActionResult<LoginCore>> getUserByID(string user)
+        {
+
+            try
+            {
+                LoginCore response = await _userCore.getUserByID(user);
+
+                if (response == null)
+                    return BadRequest(new { message = "Error encountered in authorizing." });
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.Error("authenticate():" + e);
+                return BadRequest(new { message = "Error encountered in authorizing." });
+            }
+        }
+
     }
 }

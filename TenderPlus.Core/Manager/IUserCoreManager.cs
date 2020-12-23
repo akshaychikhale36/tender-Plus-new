@@ -8,6 +8,6 @@ namespace TenderPlus.Core.Manager
         Task<UserCore> GetUser();
         Task<bool> CreateUser(LoginCore user);
         Task<UserCore> UpdateUser();
-
+        Task<LoginCore> getUserByID(string user);
     }
 }

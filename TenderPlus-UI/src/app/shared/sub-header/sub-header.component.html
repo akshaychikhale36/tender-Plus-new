@@ -17,16 +17,18 @@
     <form class="form-inline my-2 my-lg-0">
 
       <div class="container">
-
         <button *ngIf=!loggedin class="btn btn-outline-success my-2 my-sm-0" type="submit"
           routerLink='/register'>Register</button>
-
         <button *ngIf=!loggedin class="btn btn-outline-success my-2 my-sm-0" type="submit"
           routerLink='/login'>login</button>
-
       </div>
-      <button *ngIf=loggedin class="btn btn-outline-success my-2 my-sm-0" type="submit"
+      <div class="container">
+        <button *ngIf=isAdmin class="btn btn-outline-success my-2 my-sm-0" type="submit"
+        routerLink='/register'>Create Admin User</button>
+        <button *ngIf=loggedin class="btn btn-outline-success my-2 my-sm-0" type="submit"
         (click)='logout()'>logout</button>
+      </div>
+
     </form>
   </div>
 </nav>

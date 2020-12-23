@@ -25,7 +25,9 @@ namespace TenderPlus.Core.Manager
                 Login login = new Login()
                 {
                     UserName = userc.UserName,
-                    Password = userc.Password
+                    Password = userc.Password,
+                    Role=userc.Role
+
                 };
                 var res1 = await _loginDBManager.CreateDBLogin(login);
 
@@ -39,7 +41,7 @@ namespace TenderPlus.Core.Manager
                     Telephone = userc.user.Telephone,
                     License = userc.user.License,
                     CompanyName = userc.user.CompanyName,
-                    Name = userc.user.Email,
+                    Name = userc.UserName,
                     PanId = userc.user.PanId
                 };
                 var response = await _userDBManager.CreateDBUser(user);
@@ -56,6 +58,32 @@ namespace TenderPlus.Core.Manager
         public Task<UserCore> GetUser()
         {
             throw new System.NotImplementedException();
+        }
+
+        public async Task<LoginCore> getUserByID(string user)
+        {
+            try
+            {
+               
+           
+
+                var res = await _loginDBManager.GetDBLoginByUsername(user);
+                LoginCore reslog = new LoginCore()
+                {
+                    UserName = res.UserName,
+                    Role = res.Role,
+                    Id = res.Id
+
+
+                };
+
+                return reslog;
+            }
+            catch (System.Exception e)
+            {
+
+                throw;
+            }
         }
 
         public Task<UserCore> UpdateUser()
