@@ -87,8 +87,6 @@ namespace TenderPlus.DBInfra.Models
 
             modelBuilder.Entity<Tender>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Assignee)
                     .IsRequired()
                     .HasMaxLength(50)

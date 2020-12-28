@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './core/auth.guard';
+import { CreateBiddingComponent } from './create-bidding/create-bidding.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -32,6 +33,14 @@ const routes: Routes = [
   {
     path:'about-us',
     component: AboutUsComponent
+  },
+  {
+    path:'createbidding',
+    component: CreateBiddingComponent
+  },
+  {
+    path:'admin',
+    component: AdminComponent
   },
   {
     path: '**',

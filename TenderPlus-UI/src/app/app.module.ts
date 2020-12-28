@@ -23,6 +23,8 @@ import { RegisterComponent } from './register/register.component';
 import { AlertPopupComponent } from './shared/alert-popup/alert-popup.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { NgxUiLoaderModule } from "ngx-ui-loader";
+import { CreateBiddingComponent } from './create-bidding/create-bidding.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import { NgxUiLoaderModule } from "ngx-ui-loader";
     RegisterComponent,
     AlertPopupComponent,
     AboutUsComponent,
+    CreateBiddingComponent,
 
   ],
   imports: [
@@ -56,7 +59,8 @@ import { NgxUiLoaderModule } from "ngx-ui-loader";
     WavesModule,
     ButtonsModule,
     RouterModule,
-    NgxUiLoaderModule
+    NgxUiLoaderModule,
+    DataTablesModule
   ],
   providers: [
     AuthService,

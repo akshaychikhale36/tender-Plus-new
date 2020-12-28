@@ -42,6 +42,7 @@ namespace TenderPlus.Api.Controllers
                 if (response == null)
                     return BadRequest(new { message = "Error encountered in authorizing." });
 
+
                 return Ok(response);
             }
             catch (Exception e)

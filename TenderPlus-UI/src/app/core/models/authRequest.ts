@@ -8,5 +8,6 @@ export class AuthResponse
   public id: string;
   public username: string;
   public token: string;
+  public role:string;
 
 }

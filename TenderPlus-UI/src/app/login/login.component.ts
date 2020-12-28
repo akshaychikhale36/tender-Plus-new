@@ -34,7 +34,10 @@ export class LoginComponent implements OnInit {
         this.res=res;
         this.ngxService.stop();
         this.authService.mapToken(res);
+        if(res.role!="Admin")
         this.router.navigate(['/dashboard']);
+        else
+        this.router.navigate(['/admin']);
       },
       (error) => {
         this.ngxService.stop();

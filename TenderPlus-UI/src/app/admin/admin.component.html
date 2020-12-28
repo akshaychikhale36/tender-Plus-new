@@ -1,1 +1,52 @@
-<p>admin works!</p>
+<app-sub-header></app-sub-header>
+
+
+
+  <div class="container-fluid row details">
+    <div class="detailsbody">
+      <div class="row align-items-end justify-content-sm-center">
+        <h2 class="heading" translate>Estithmar</h2>
+        <div class="call_actions">
+          <a [routerLink]="['/EiscNewIsnadGenerateGoogleMapForm']" class="btn btn-main btn-md" translate>New Request</a>
+        </div>
+      </div>
+
+      <!-- Second Card-->
+      <div class="card-box" >
+        <div class="card-box-body">
+          <!-- Invoice List-->
+          <table id="EiscWorkList" class="table table-bordered table-responsive-sm" datatable [dtOptions]="dtOptions">
+            <thead>
+              <tr>
+                <th width="30px">Sr. No.</th>
+                <th>Request No</th>
+                <th width="150px">Application date</th>
+                <th>City-District</th>
+                <th>ISNAD No</th>
+                <th>MOE Account</th>
+                <th>Application Status</th>
+                <th>Request Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let items of tender; let id = index" [ngSwitch]="items.eiscstatus">
+                <td>{{ id + 1 }}</td>
+                <td>{{ items.requestNumber }}</td>
+                <td>{{ items.createdDateTime | date }}</td>
+                <td>{{ items.city }}-{{items.District}}</td>
+                <td>{{ items.isnadnumber }}</td>
+                <td>{{items.region}}</td>
+                <td>
+                  <!-- <a (click)="redirect(items)" class="btn btn-outline outline-yellow" translate>View</a> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ngx-ui-loader></ngx-ui-loader>
+
+
+

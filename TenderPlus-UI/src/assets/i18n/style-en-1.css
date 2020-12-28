@@ -1,0 +1,606 @@
+/***
+Buttons
+**/
+.btn-outline, .btn-outline-sm {
+  color: #00A5B5 !important;
+}
+
+.btn-outline-yellow {
+  border-color: #FFDF6C;
+  color: #574949 !important;
+}
+
+.btn-outline-yellow:hover {
+  background-color: #FFDF6C;
+  color: #574949 !important;
+}
+
+.btn-outline-red {
+  border-color: #FF7246;
+  color: #FF7246 !important;
+}
+
+.btn-outline-red:hover {
+  background-color: #FF7246;
+  color: #fff !important;
+}
+
+/**
+Investor Dashboard
+***/
+.investor-main-tabs {
+  background-color: #01727B;
+  border-top: 2px solid #025259;
+  border-bottom: 2px solid #025259;
+}
+
+.investor-main-tabs .nav-item:first-child {
+  margin-left: 14px;
+}
+
+.investor-main-tabs .nav-link {
+  border-radius: 0;
+  color: #ACD5D9;
+  font-weight: normal;
+  text-transform: uppercase;
+  border-right: 2px solid #194848;
+  -webkit-transform: skewX(-24deg);
+          transform: skewX(-24deg);
+  padding: 1rem 1.25rem;
+}
+
+.investor-main-tabs .nav-link .slanted-text {
+  display: inline-block;
+  -webkit-transform: skewX(24deg);
+          transform: skewX(24deg);
+  vertical-align: middle;
+  letter-spacing: 1px;
+}
+
+.investor-main-tabs .nav-link .slanted-text i {
+  padding: 0px 4px;
+  opacity: 65%;
+}
+
+.investor-main-tabs .nav-link .slanted-text i img {
+  margin-top: -4px;
+}
+
+.investor-main-tabs .nav-link.active {
+  background: linear-gradient(89.96deg, #067D87 0.03%, #0096A3 96.49%);
+}
+
+.investor-main-tabs .nav-link.active .slanted-text i {
+  opacity: 100%;
+}
+
+.investor-main-tabs .nav-item:first-child .nav-link.active::before {
+  content: "";
+  background: linear-gradient(89.96deg, #067D87 0.03%, #0096A3 96.49%);
+  width: 90%;
+  height: 100%;
+  /* margin-left: -10px; */
+  position: absolute;
+  left: -13px;
+  top: 0;
+  -webkit-transform: skewX(24deg);
+          transform: skewX(24deg);
+}
+
+/** Investor All Tabs **/
+.investor-allRequests-tabs {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.investor-allRequests-tabs .nav-link {
+  min-width: 140px;
+  height: 6rem;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), to(#FCFCFC));
+  background: linear-gradient(180deg, #F4F4F4 0%, #FCFCFC 100%);
+  border: 1px solid #A9A9A9;
+  -webkit-box-shadow: 0px 2px 4px rgba(1, 81, 88, 0.2);
+          box-shadow: 0px 2px 4px rgba(1, 81, 88, 0.2);
+  border-radius: 0px 16px 16px 16px;
+  color: #646464;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+
+.investor-allRequests-tabs .nav-link .request-count {
+  margin-left: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #FFFFFF;
+  border: 1px solid #646464;
+  font-size: 1.25rem;
+  color: #646464;
+  border-radius: 50%;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.investor-allRequests-tabs .nav-link .request-count-label {
+  font-size: 0.75rem;
+  text-align: center;
+  margin-left: 1rem;
+  padding-top: 0.25rem;
+}
+
+.investor-allRequests-tabs .nav-link.active {
+  background: -webkit-gradient(linear, left top, left bottom, from(#1BBDCD), to(#1AD3E4));
+  background: linear-gradient(180deg, #1BBDCD 0%, #1AD3E4 100%);
+  border: 1px solid #27A6B3;
+  color: #fff;
+}
+
+.investor-allRequests-tabs .nav-link.active .request-count {
+  border: 0px;
+}
+
+/** Investor New Request **/
+.investor-new-request .new-request-card {
+  background-color: #CCEBEB;
+  border: 1px solid #00A5B5;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.14);
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.14);
+  padding: 1.25rem;
+  margin: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.investor-new-request .new-request-card .card-icon {
+  background: #fff;
+  opacity: 0.8;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.investor-new-request .new-request-card h3 {
+  margin: 0;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: #128892;
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+}
+
+.investor-new-request .new-request-card h5.arrow {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0.5rem;
+  margin: 1rem;
+  border-left: 2px solid #00A5B5;
+  border-top: 2px solid #00A5B5;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+.investor-new-request .new-request-card.orange-color {
+  background: #FFE589;
+  border: 1px solid #8C8225;
+}
+
+.investor-new-request .new-request-card.orange-color h3 {
+  color: #8C8225;
+}
+
+.investor-new-request .new-request-card.orange-color h5.arrow {
+  border-color: #8C8225;
+}
+
+/** Investment MAP API **/
+.investmentMapApi {
+  margin: 2rem auto;
+  border: 1px solid #00A5B5;
+  border-radius: 4px;
+  width: 100%;
+  height: 360px;
+}
+
+/* Investor Table */
+h2.service-heading {
+  font-size: 1.5rem;
+  color: #00A5B5;
+  font-weight: bold;
+}
+
+.investor-table {
+  background-color: #CCEBEB;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.investor-table table {
+  border-collapse: separate;
+  border-spacing: 0px 0.5rem !important;
+  border: 0 !important;
+}
+
+.investor-table table thead th {
+  font-size: 0.9rem;
+  border-top: 0;
+  border-bottom: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: transparent !important;
+  color: #828282 !important;
+  border: 0 !important;
+  text-align: left !important;
+}
+
+.investor-table table tbody tr {
+  background: #fff;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.investor-table table tbody td {
+  border-top: 0;
+  vertical-align: middle;
+  color: #484848;
+  text-align: left !important;
+}
+
+.investor-table table tbody td:first-child {
+  border-left: 4px solid #80CDD4;
+}
+
+.investor-table table tbody td:last-child {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.investor-table table tbody tr:nth-child(even) td:first-child {
+  border-left: 4px solid #FDE595;
+}
+
+/** School Profile **/
+.card-box .card-box-header-yellow {
+  background-color: #FDE080;
+}
+
+.card-box .card-box-header-yellow .nav-pills .nav-link {
+  color: #2D5357;
+  font-weight: 500;
+}
+
+.card-box .card-box-header-yellow .nav-pills .nav-link.active {
+  color: #fff;
+}
+
+.card-box .card-box-header-yellow .nav-link {
+  padding: 0.25rem 1.5rem;
+}
+
+/** View Info Card **/
+.view-info-card {
+  padding: 0.5rem;
+  border-bottom: 1px solid #CFEEF1;
+  margin: 0.5rem 2rem 0.5rem 0rem;
+}
+
+.view-info-card.no-border {
+  border-bottom: 0;
+}
+
+.view-info-card p, .view-info-card a {
+  margin-bottom: 0;
+  color: #0A494F;
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.view-info-card p.label {
+  color: #4CA8B1;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+/** Status colors **/
+span.status {
+  background: #5DD200;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+span.status.status-yellow {
+  background-color: #F8DF00;
+}
+
+span.status.status-red {
+  background-color: #F81E1E;
+}
+
+span.status.status-grey {
+  background-color: #999999;
+}
+
+/** Tarhees All services page **/
+.list-group-item.active {
+  background-color: #00A5B5;
+}
+
+.list-group {
+  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);
+}
+
+.list-group-item {
+  padding: 0.75rem 1.25rem;
+  font-weight: normal;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid rgba(3, 89, 255, 0.25);
+}
+
+.list-group-item .service_notify {
+  background-color: #F9E959;
+  border-radius: 50%;
+  color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: auto;
+}
+
+.list-group-item .list-arrow {
+  margin-left: auto;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-left: 2px solid #BAD1FD;
+  border-top: 2px solid #BAD1FD;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+.list-group-item span {
+  margin-right: 0.5rem;
+}
+
+.list-group-item::after {
+  display: "dd";
+  width: 2rem;
+  height: 2rem;
+}
+
+/** MAP Details view **/
+.selected-map-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.selected-map-details div {
+  margin: 0.25rem;
+  margin-right: 4rem;
+}
+
+.selected-map-details p {
+  font-size: 1rem;
+  margin-bottom: 0;
+  color: #2D5357;
+}
+
+.selected-map-details p.label {
+  color: #A7A7A7;
+}
+
+#viewMap .modal-header {
+  background-color: transparent;
+  border-bottom: 1px solid #4CACB6;
+}
+
+/*** Space Program **/
+.space-program.card-box {
+  -webkit-box-shadow: unset;
+          box-shadow: unset;
+}
+
+.space-program .card-box-header {
+  background-color: #f7f7ff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+}
+
+.space-program h4 {
+  color: #00a5b5;
+  margin-left: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+/** Space Program Table **/
+#spaceProgramTable .modal-header {
+  background-color: #fff;
+  border-bottom: 1px solid #00A5B5;
+}
+
+#spaceProgramTable .modal-dialog {
+  max-width: 96%;
+}
+
+#spaceProgramTable table thead th {
+  background-color: #00A5B5;
+  color: #fff;
+  text-transform: uppercase;
+  border-bottom-width: 1px;
+  font-weight: normal;
+  text-transform: capitalize;
+  border-top: 1px solid #a4d9de;
+  border-right: 1px solid #a4d9de;
+}
+
+#spaceProgramTable table tr:first-child th:first-child {
+  border-top-left-radius: 0.5rem;
+}
+
+#spaceProgramTable table tr:first-child th:last-child {
+  border-top-right-radius: 0.5rem;
+}
+
+/*** Site Visit Report **/
+#siteVisitReport .modal-header h5 {
+  margin-top: 0 !important;
+}
+
+#siteVisitReport .modal-dialog {
+  max-width: 80%;
+}
+
+#siteVisitReport .mapImage {
+  height: 360px;
+  border: 1px solid #00A5B5;
+  border-radius: 0.25rem;
+  margin: 2rem;
+}
+
+#siteVisitReport h5 {
+  margin-left: 2rem !important;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #737373;
+}
+
+/** Grey Table **/
+.grey-table tr th {
+  background-color: #a0a0a0 !important;
+  border-right: 1px solid #7e898a !important;
+}
+
+.grey-table tr td {
+  border-left: 1px solid #ccc !important;
+  border-top: 1px solid #ccc !important;
+  font-size: 1rem;
+  color: #646464;
+}
+
+.grey-table tr td:first-child {
+  border-left: 0 !important;
+}
+
+.grey-table tr td:first-child th {
+  border-right: 0 !important;
+}
+
+.grey-table tr:first-child td {
+  border-top: 0 !important;
+}
+
+.rating-stars {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 0.25rem;
+}
+
+.rating-stars img {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.rating-stars .rating-star {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1rem;
+  /* background: url(../images/ratingstar-grey.svg) center no-repeat; */
+  cursor: pointer;
+  background-size: contain;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.rating-stars .rating-star:hover {
+  /* background: url(../images/ratingstar-sel.svg) center no-repeat; */
+}
+
+.rating-stars .rating-star img {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* div[mapDisabled]
+{
+  pointer-events: none;
+  opacity: 0.9;
+} */
+mat-dialog-container {
+  background-color: white !important;
+  height: 700px !important;
+}
+.btn-group .active {
+  background: #00A5B5 !important;
+    color: #fff !important;
+
+  }
+
+  .alert-modal-body {
+    font-size: 1.2rem;
+  }
+
+/*# sourceMappingURL=style-en-1.css.map */
