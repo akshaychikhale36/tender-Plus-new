@@ -9,11 +9,13 @@ import { Tender } from '../models/tender.model';
 export class AdminComponent implements OnInit {
   @ViewChild('dataTable') table;
   dtOptions: DataTables.Settings = {};
-  tender:Tender={};
+  tender: Tender[] = [];
+  tenderpolu:Tender={};
+  // tender:Tender={};
   constructor() { }
 
   ngOnInit(): void {
-    this.tender.Bidding={}
+    this.tenderpolu.Bidding={}
     this.dtOptions = {
       dom: '<"dataTableTop"fp>t<"dataTablebottom"p><"clear">',
       pageLength: 10,
@@ -22,5 +24,24 @@ export class AdminComponent implements OnInit {
       responsive: true,
       searching: true,
     };
+    this.populateData();
+  }
+  populateData(){
+this.tenderpolu.Title="test"
+this.tenderpolu.Location="test"
+this.tenderpolu.State="test"
+this.tenderpolu.District="test"
+this.tenderpolu.Bidding.InititalBid="5000"
+this.tender.push(this.tenderpolu)
+
+  }
+  redirectView(tender:Tender){
+
+  }
+  redirectEdit(tender:Tender){
+
+  }
+  redirectDelete(tender:Tender){
+
   }
 }

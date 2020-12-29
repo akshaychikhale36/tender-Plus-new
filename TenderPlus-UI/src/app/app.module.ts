@@ -25,6 +25,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { CreateBiddingComponent } from './create-bidding/create-bidding.component';
 import { DataTablesModule } from 'angular-datatables';
+import { ViewBiddingComponent } from './view-bidding/view-bidding.component';
+import { EditBiddingComponent } from './edit-bidding/edit-bidding.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { DataTablesModule } from 'angular-datatables';
     AlertPopupComponent,
     AboutUsComponent,
     CreateBiddingComponent,
+    ViewBiddingComponent,
+    EditBiddingComponent,
 
   ],
   imports: [

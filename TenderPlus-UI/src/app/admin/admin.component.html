@@ -19,25 +19,26 @@
             <thead>
               <tr>
                 <th width="30px">Sr. No.</th>
-                <th>Request No</th>
-                <th width="150px">Application date</th>
-                <th>City-District</th>
-                <th>ISNAD No</th>
-                <th>MOE Account</th>
-                <th>Application Status</th>
-                <th>Request Details</th>
+                <th>Title</th>
+                <th width="150px">Location</th>
+                <th>State-District</th>
+                <th>Initital Bid</th>
+                <th>Reporter</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let items of tender; let id = index" [ngSwitch]="items.eiscstatus">
+              <tr *ngFor="let items of tender; let id = index">
                 <td>{{ id + 1 }}</td>
-                <td>{{ items.requestNumber }}</td>
-                <td>{{ items.createdDateTime | date }}</td>
-                <td>{{ items.city }}-{{items.District}}</td>
-                <td>{{ items.isnadnumber }}</td>
-                <td>{{items.region}}</td>
+                <td>{{ items.Title}}</td>
+                <td>{{ items.Location | date }}</td>
+                <td>{{ items.State }}-{{items.District}}</td>
+                <td>{{ items.Bidding.InititalBid }}</td>
+                <td>{{ items.Reporter}}</td>
                 <td>
-                  <!-- <a (click)="redirect(items)" class="btn btn-outline outline-yellow" translate>View</a> -->
+                  <a (click)="redirectView(items)" class="btn btn-outline outline-yellow" translate>View</a>
+                  <a (click)="redirectEdit(items)" class="btn btn-outline outline-blue" translate>Edit</a>
+                  <a (click)="redirectDelete(items)" class="btn btn-outline-red " translate>Delete</a>
                 </td>
               </tr>
             </tbody>

@@ -18,6 +18,7 @@ namespace TenderPlus.DBInfra.Models
         public virtual DbSet<Bidding> Bidding { get; set; }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<Tender> Tender { get; set; }
+        public virtual DbSet<TenderUsers> TenderUsers { get; set; }
         public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -48,13 +49,11 @@ namespace TenderPlus.DBInfra.Models
                 entity.HasOne(d => d.Assignee)
                     .WithMany(p => p.BiddingAssignee)
                     .HasForeignKey(d => d.AssigneeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Bidding_Tender");
 
                 entity.HasOne(d => d.Reportee)
                     .WithMany(p => p.BiddingReportee)
                     .HasForeignKey(d => d.ReporteeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Bidding_User");
 
                 entity.HasOne(d => d.Tender)
@@ -88,54 +87,63 @@ namespace TenderPlus.DBInfra.Models
             modelBuilder.Entity<Tender>(entity =>
             {
                 entity.Property(e => e.Assignee)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CloseDate).HasColumnType("datetime");
 
-                entity.Property(e => e.DemoImg)
-                    .IsRequired()
-                    .HasColumnType("image");
+                entity.Property(e => e.DemoImg).HasColumnType("image");
 
                 entity.Property(e => e.Description)
-                    .IsRequired()
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
                 entity.Property(e => e.District)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Location)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Pin).HasColumnType("numeric(6, 0)");
 
                 entity.Property(e => e.Reporter)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
 
                 entity.Property(e => e.State)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Title)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Type)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<TenderUsers>(entity =>
+            {
+                entity.HasKey(e => e.TenderId);
+
+                entity.Property(e => e.TenderId)
+                    .HasColumnName("TenderID")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.RegisteredUsers)
+                    .HasColumnName("registeredUsers")
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Tender)
+                    .WithOne(p => p.TenderUsers)
+                    .HasForeignKey<TenderUsers>(d => d.TenderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TenderUsers_Tender");
             });
 
             modelBuilder.Entity<User>(entity =>

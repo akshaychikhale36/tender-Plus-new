@@ -6,6 +6,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './core/auth.guard';
 import { CreateBiddingComponent } from './create-bidding/create-bidding.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditBiddingComponent } from './edit-bidding/edit-bidding.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -41,6 +42,14 @@ const routes: Routes = [
   {
     path:'admin',
     component: AdminComponent
+  },
+  {
+    path:'viewbidding',
+    component: CreateBiddingComponent
+  },
+  {
+    path:'editbidding',
+    component: EditBiddingComponent
   },
   {
     path: '**',
