@@ -3,6 +3,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { register } from '../models/register.model';
 import { Tender } from '../models/tender.model';
+import { AlertPopupComponent } from '../shared/alert-popup/alert-popup.component';
+import { PaymentService } from './payment.service';
 import { ICustomWindow, WindowRefService } from './window-ref.service';
 
 @Component({
@@ -11,13 +13,14 @@ import { ICustomWindow, WindowRefService } from './window-ref.service';
   styleUrls: ['./view-tender.component.css']
 })
 export class ViewTenderComponent implements OnInit {
+  @ViewChild(AlertPopupComponent) alertPopupComponent;
   private _window: ICustomWindow;
   public rzp: any;
   tender: Tender = {};
   @ViewChild('dataTable') table;
   dtOptions: DataTables.Settings = {};
   public options: any = {
-    key: 'rzp_test_OqL3i9Rr9cpCk2', // add razorpay key here
+    key: 'rzp_test_fcCzFVhnxp0Dqj', // add razorpay key here
     name: 'Tender Name',
     description: 'Fees',
     amount: 100, // razorpay takes amount in paisa
@@ -40,7 +43,8 @@ export class ViewTenderComponent implements OnInit {
   };
   constructor(private router: Router,
     private zone: NgZone,
-    private winRef: WindowRefService) {
+    private winRef: WindowRefService,
+    private payment:PaymentService) {
     this._window = this.winRef.nativeWindow;
   }
 
@@ -65,7 +69,18 @@ export class ViewTenderComponent implements OnInit {
   }
   paymentHandler(res: any) {
     this.zone.run(() => {
-      // add API call here
+      this.payment.makepayement(this.options).subscribe(
+        (res) =>
+        {
+          var title = 'Alert';
+          var body = 'Payment Sucessful';
+          this.alertPopupComponent.alertMessage(title, body);
+        },
+        (error) => {
+
+          console.log(error);
+        }
+      )
     });
   }
 }
