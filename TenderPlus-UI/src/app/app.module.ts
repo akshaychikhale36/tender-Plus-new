@@ -27,6 +27,7 @@ import { CreateBiddingComponent } from './create-bidding/create-bidding.componen
 import { DataTablesModule } from 'angular-datatables';
 import { ViewBiddingComponent } from './view-bidding/view-bidding.component';
 import { EditBiddingComponent } from './edit-bidding/edit-bidding.component';
+import { ViewTenderComponent } from './view-tender/view-tender.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { EditBiddingComponent } from './edit-bidding/edit-bidding.component';
     CreateBiddingComponent,
     ViewBiddingComponent,
     EditBiddingComponent,
+    ViewTenderComponent,
 
   ],
   imports: [

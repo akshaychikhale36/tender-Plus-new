@@ -6,13 +6,13 @@ Buttons
 }
 
 .btn-outline-yellow {
-  border-color: #FFDF6C;
-  color: #574949 !important;
+  border-color: #ecbc0f;
+  color: #ecbc0f !important;
 }
 
 .btn-outline-yellow:hover {
-  background-color: #FFDF6C;
-  color: #574949 !important;
+  background-color: #ecbc0f;
+  color: #fff !important;
 }
 
 .btn-outline-red {

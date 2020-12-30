@@ -5,10 +5,8 @@
   <div class="container-fluid row details">
     <div class="detailsbody">
       <div class="row align-items-end justify-content-sm-center">
-        <h2 class="heading" translate>Estithmar</h2>
-        <div class="call_actions">
-          <a [routerLink]="['/EiscNewIsnadGenerateGoogleMapForm']" class="btn btn-main btn-md" translate>New Request</a>
-        </div>
+        <h2 class="heading" translate>Tender</h2>
+
       </div>
 
       <!-- Second Card-->
@@ -36,7 +34,7 @@
                 <td>{{ items.Bidding.InititalBid }}</td>
                 <td>{{ items.Reporter}}</td>
                 <td>
-                  <a (click)="redirectView(items)" class="btn btn-outline outline-yellow" translate>View</a>
+                  <a (click)="redirectView(items)" class="btn btn-outline-yellow" translate>View</a>
                   <a (click)="redirectEdit(items)" class="btn btn-outline outline-blue" translate>Edit</a>
                   <a (click)="redirectDelete(items)" class="btn btn-outline-red " translate>Delete</a>
                 </td>

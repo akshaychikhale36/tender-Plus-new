@@ -11,7 +11,9 @@ export class EditBiddingComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
     this.tender.Bidding={}
+    this.tender=history.state as Tender;
   }
   save() {
 

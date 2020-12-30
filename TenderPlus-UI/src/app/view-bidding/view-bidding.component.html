@@ -9,8 +9,8 @@
       <div class="row align-items-center justify-content-sm-center mb-1">
         <h2 class="heading" translate>Tender</h2>
         <div class="call_actions">
-          <button  (click)=Edit() class="btn btn-outline mx-2" translate>Edit</button>
-          <button  routerLink='/admin' class="btn btn-outline mx-2" translate>Close</button>
+          <button (click)=Edit() class="btn btn-outline mx-2" translate>Edit</button>
+          <button routerLink='/admin' class="btn btn-outline mx-2" translate>Close</button>
         </div>
       </div>
 
@@ -76,7 +76,7 @@
                   </div>
                   <div class="form-group col-md-6 pr-md-5 px-sm-2">
                     <label class="translate" for="" translate>Start Time</label>
-                    <p>{{tender.Bidding.StartTime}}</p>
+                    <p>{{tender.Bidding?.StartTime}}</p>
 
                   </div>
                   <div class="form-group col-md-6 pl-md-5 px-sm-2">
@@ -86,12 +86,12 @@
                   </div>
                   <div class="form-group col-md-6 pr-md-5 px-sm-2">
                     <label class="translate" for="" translate>End Time</label>
-                    <p>{{tender.Bidding.EndTime}}</p>
+                    <p>{{tender.Bidding?.EndTime}}</p>
 
                   </div>
                   <div class="form-group col-md-6 pl-md-5 px-sm-2">
                     <label class="translate" for="" translate>Initital Bid</label>
-                    <p>{{tender.Bidding.InititalBid}}</p>
+                    <p>{{tender.Bidding?.InititalBid}}</p>
                   </div>
                 </div>
               </div>
@@ -99,10 +99,39 @@
           </div>
         </div>
       </div>
-      <div class="row justify-content-end sm-mx-auto my-2 mr-1">
-        <!-- <button (click)="SaveIsnadDraft()" class="btn btn-outline mx-2" translate>Save As Draft</button>
-        <a (click)='GenerateIsnadEisc()' class="btn btn-outline mx-2" translate>Generate ISNAD</a>
-        <a [routerLink]="['/EiscIsnadWorklist']" class="btn btn-outline btn-outline-red mx-2" translate>Close</a> -->
+      <div >
+        <div class="detailsbody">
+          <div class="row align-items-end justify-content-sm-center">
+            <h2 class="heading" translate>Registered Users</h2>
+
+          </div>
+          <div class="card-box">
+            <div class="card-box-body">
+              <!-- Invoice List-->
+              <table id="EiscWorkList" class="table table-bordered table-responsive-sm" datatable
+                [dtOptions]="dtOptions">
+                <thead>
+                  <tr>
+                    <th width="30px">Sr. No.</th>
+                    <th>Name</th>
+                    <th width="150px">CompanyName</th>
+                    <th>Telephone</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let items of users; let id = index">
+                    <td>{{ id + 1 }}</td>
+                    <td>{{ items.Name}}</td>
+                    <td>{{ items.CompanyName }}</td>
+                    <td>{{ items.Telephone }}</td>
+                    <td>{{ items.Email}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

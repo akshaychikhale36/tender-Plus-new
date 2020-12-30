@@ -10,6 +10,8 @@ import { EditBiddingComponent } from './edit-bidding/edit-bidding.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ViewBiddingComponent } from './view-bidding/view-bidding.component';
+import { ViewTenderComponent } from './view-tender/view-tender.component';
 
 
 
@@ -45,11 +47,15 @@ const routes: Routes = [
   },
   {
     path:'viewbidding',
-    component: CreateBiddingComponent
+    component: ViewBiddingComponent
   },
   {
     path:'editbidding',
     component: EditBiddingComponent
+  },
+  {
+    path:'viewtender',
+    component: ViewTenderComponent
   },
   {
     path: '**',
