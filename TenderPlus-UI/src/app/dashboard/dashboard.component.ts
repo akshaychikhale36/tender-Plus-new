@@ -10,7 +10,7 @@ count:number[];
   constructor() { }
 
   ngOnInit(): void {
-    this.count=[1,2,3]
+    this.count=[1,2,3,4,5,6,7,8,9,8,8]
   }
 
 }

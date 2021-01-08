@@ -23,7 +23,7 @@ export class ViewTenderComponent implements OnInit {
     key: 'rzp_test_fcCzFVhnxp0Dqj', // add razorpay key here
     name: 'Tender Name',
     description: 'Fees',
-    amount: 100, // razorpay takes amount in paisa
+    amount: 10000, // razorpay takes amount in paisa
     prefill: {
       name: 'Tender Registration amout',
       email: '', // add your email id

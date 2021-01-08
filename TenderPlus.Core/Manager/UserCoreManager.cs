@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System.Threading.Tasks;
 using TenderPlus.Core.Models;
+using TenderPlus.Core.Provider;
 using TenderPlus.DBInfra.Manager;
 using TenderPlus.DBInfra.Models;
 
@@ -44,8 +45,12 @@ namespace TenderPlus.Core.Manager
                     Name = userc.UserName,
                     PanId = userc.user.PanId
                 };
+                bool res2;
                 var response = await _userDBManager.CreateDBUser(user);
-
+                if (response)
+                {
+                     res2 =SmsProvider.SendSms(string.Concat("+91", userc.user.Telephone), "Welcome to Tender + Thanks for joining our services");
+                }
                 return response;
             }
             catch (System.Exception e)

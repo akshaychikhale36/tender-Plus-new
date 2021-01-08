@@ -13,11 +13,9 @@ export class PaymentService {
   constructor(private _http: HttpClient,
     private _env: EnvService) { }
 
-  makepayement(username: string, password: string): Observable<any> {
-    var authReqest = new AuthRequest();
-    authReqest.username=username;
-    authReqest.password=password;
-    return this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/payment', authReqest)
+  makepayement(options: any): Observable<any> {
+
+    return this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/payment', options)
       .pipe(
         //tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)

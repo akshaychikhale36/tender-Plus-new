@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { AdminComponent } from './admin/admin.component';
+import { BiddingUiComponent } from './bidding-ui/bidding-ui.component';
 import { AuthGuard } from './core/auth.guard';
 import { CreateBiddingComponent } from './create-bidding/create-bidding.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path:'viewtender',
     component: ViewTenderComponent
+  },
+  {
+    path:'makebidding',
+    component: BiddingUiComponent
   },
   {
     path: '**',
