@@ -20,6 +20,5 @@ namespace TenderPlus.DBInfra.Models
         public decimal? Pin { get; set; }
 
         public virtual Bidding Bidding { get; set; }
-        public virtual TenderUsers TenderUsers { get; set; }
     }
 }
