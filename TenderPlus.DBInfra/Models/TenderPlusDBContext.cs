@@ -38,13 +38,13 @@ namespace TenderPlus.DBInfra.Models
 
                 entity.Property(e => e.TenderId).ValueGeneratedNever();
 
-                entity.Property(e => e.EndTime).HasColumnType("datetime");
+                entity.Property(e => e.EndTime).IsUnicode(false);
 
-                entity.Property(e => e.FinalBid).HasColumnType("money");
+                entity.Property(e => e.FinalBid).IsUnicode(false);
 
-                entity.Property(e => e.InititalBid).HasColumnType("money");
+                entity.Property(e => e.InititalBid).IsUnicode(false);
 
-                entity.Property(e => e.StartTime).HasColumnType("datetime");
+                entity.Property(e => e.StartTime).IsUnicode(false);
 
                 entity.HasOne(d => d.Assignee)
                     .WithMany(p => p.BiddingAssignee)
@@ -90,7 +90,7 @@ namespace TenderPlus.DBInfra.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CloseDate).HasColumnType("datetime");
+                entity.Property(e => e.CloseDate).IsUnicode(false);
 
                 entity.Property(e => e.DemoImg).HasColumnType("image");
 
@@ -106,13 +106,13 @@ namespace TenderPlus.DBInfra.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Pin).HasColumnType("numeric(6, 0)");
+                entity.Property(e => e.Pin).IsUnicode(false);
 
                 entity.Property(e => e.Reporter)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.StartDate).HasColumnType("datetime");
+                entity.Property(e => e.StartDate).IsUnicode(false);
 
                 entity.Property(e => e.State)
                     .HasMaxLength(50)

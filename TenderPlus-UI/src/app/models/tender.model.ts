@@ -1,7 +1,7 @@
 import { bidding } from './bidding.model'
 
 export class Tender {
-  Id?: string
+  Id?: Number
   Title?: string
   Description?: string
   Type?: string
@@ -15,3 +15,4 @@ export class Tender {
   Pin?: string
   Bidding?: bidding
 }
+

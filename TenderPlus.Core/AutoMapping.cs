@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using System.Linq;
 using TenderPlus.Core.Models;
 using TenderPlus.DBInfra.Models;
 
@@ -10,11 +9,13 @@ namespace TenderPlus.Core
         public AutoMapping()
         {
             CreateMap<User, UserCore>();
-            CreateMap<Login,LoginCore > ();
+            CreateMap<Login, LoginCore>();
             CreateMap<LoginCore, Login>();
- 
+
             CreateMap<BiddingCore, Bidding>();
             CreateMap<TenderCore, Tender>();
+            CreateMap<Tender, TenderCore>();
+            CreateMap<Bidding, BiddingCore>();
         }
     }
 }

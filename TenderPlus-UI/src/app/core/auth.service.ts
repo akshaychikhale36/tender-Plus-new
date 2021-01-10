@@ -32,6 +32,7 @@ export class AuthService {
   deleteToken(): void {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    localStorage.removeItem("id");
   }
   // getToken(username: string, password: string) {
   //   var authReqest = new AuthRequest();
@@ -68,6 +69,7 @@ export class AuthService {
     response.username = data.username;
     localStorage.setItem("token", data.token);
     localStorage.setItem("username", data.username);
+    localStorage.setItem("id", data.id);
     return response;
   }
 

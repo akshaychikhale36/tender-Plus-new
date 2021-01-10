@@ -1,11 +1,11 @@
 import { Time } from '@angular/common'
 
 export class bidding {
-  Id?: string
+  Id?: number
   InititalBid?: string
   FinalBid?: string
-  AssigneeId?: string
-  ReporteeId?: string
-  StartTime?: Time
-  EndTime?: Time
+  AssigneeId?: number
+  ReporteeId?: number
+  StartTime?: string
+  EndTime?: string
 }
