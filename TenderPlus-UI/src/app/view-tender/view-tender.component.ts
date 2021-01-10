@@ -49,7 +49,7 @@ export class ViewTenderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tender.Bidding = {}
+    this.tender.bidding = {}
     this.tender = history.state as Tender;
     this.dtOptions = {
       dom: '<"dataTableTop"fp>t<"dataTablebottom"p><"clear">',

@@ -28,11 +28,11 @@
             <tbody>
               <tr *ngFor="let items of tender; let id = index">
                 <td>{{ id + 1 }}</td>
-                <td>{{ items.Title}}</td>
-                <td>{{ items.Location | date }}</td>
-                <td>{{ items.State }}-{{items.District}}</td>
-                <td>{{ items.Bidding.InititalBid }}</td>
-                <td>{{ items.Reporter}}</td>
+                <td>{{ items.title}}</td>
+                <td>{{ items.location  | date }}</td>
+                <td>{{ items.state }}-{{items.district}}</td>
+                <td>{{ items.bidding.inititalBid||'na' }}</td>
+                <td>{{ items.reporter}}</td>
                 <td>
                   <a (click)="redirectView(items)" class="btn btn-outline-yellow" translate>View</a>
                   <a (click)="redirectEdit(items)" class="btn btn-outline outline-blue" translate>Edit</a>

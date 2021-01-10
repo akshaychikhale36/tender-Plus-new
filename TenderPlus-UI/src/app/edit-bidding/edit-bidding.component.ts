@@ -12,7 +12,7 @@ export class EditBiddingComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.tender.Bidding={}
+    this.tender.bidding={}
     this.tender=history.state as Tender;
   }
   save() {

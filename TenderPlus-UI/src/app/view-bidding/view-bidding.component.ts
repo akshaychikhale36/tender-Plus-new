@@ -18,7 +18,7 @@ export class ViewBiddingComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.tender.Bidding = {}
+    this.tender.bidding = {}
     this.tender = history.state as Tender;
     this.dtOptions = {
       dom: '<"dataTableTop"fp>t<"dataTablebottom"p><"clear">',
@@ -28,7 +28,7 @@ export class ViewBiddingComponent implements OnInit {
       responsive: true,
       searching: true,
     };
-    this.populateUsers();
+    // this.populateUsers();
   }
   populateUsers() {
     this.user.Aadhar='123'

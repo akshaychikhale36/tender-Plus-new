@@ -34,9 +34,9 @@ export class TenderService {
           catchError(this.handleError)
         );
     }
-    GetTenders(tender:Tender): Observable<any> {
+    GetTenders(): Observable<any> {
 
-      return this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/create',tender)
+      return this._http.get(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders')
         .pipe(
           catchError(this.handleError)
         );

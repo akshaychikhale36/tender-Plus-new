@@ -19,7 +19,7 @@ export class CreateBiddingComponent implements OnInit {
   constructor(private router: Router, private tenderService: TenderService, private ngxService: NgxUiLoaderService) { }
 
   ngOnInit(): void {
-    this.tender.Bidding = {}
+    this.tender.bidding = {}
     this.id=this.getTokenStorage()
   }
   getTokenStorage(): string {
@@ -29,7 +29,7 @@ export class CreateBiddingComponent implements OnInit {
     // var title = 'Alert';
     // var body = 'Created Sucessfully';
     // this.alertPopupComponent.alertMessage(title, body);
-    this.tender.Bidding.ReporteeId= Number( this.id)
+    this.tender.bidding.reporteeId= Number( this.id)
     this.ngxService.start();
     this.tenderService.createTender(this.tender).subscribe(
       (res) => {
@@ -44,7 +44,7 @@ export class CreateBiddingComponent implements OnInit {
           var title = 'Alert';
           var body = ' created Sucessfully';
           this.alertPopupComponent.alertMessage(title, body);
-          this.tender.Bidding = {}
+          this.tender.bidding = {}
           this.tender = {}
         }
       },
