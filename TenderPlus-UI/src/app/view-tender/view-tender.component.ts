@@ -17,6 +17,7 @@ export class ViewTenderComponent implements OnInit {
   private _window: ICustomWindow;
   public rzp: any;
   tender: Tender = {};
+  paymentDone:boolean =false;
   @ViewChild('dataTable') table;
   dtOptions: DataTables.Settings = {};
   public options: any = {
@@ -72,9 +73,11 @@ export class ViewTenderComponent implements OnInit {
       this.payment.makepayement(this.options).subscribe(
         (res) =>
         {
+          this.paymentDone=true;
           var title = 'Alert';
           var body = 'Payment Sucessful';
           this.alertPopupComponent.alertMessage(title, body);
+
         },
         (error) => {
 

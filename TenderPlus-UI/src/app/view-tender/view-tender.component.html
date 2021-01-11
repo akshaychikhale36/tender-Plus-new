@@ -9,8 +9,8 @@
       <div class="row align-items-center justify-content-sm-center mb-1">
         <h2 class="heading" translate>Tender</h2>
         <div class="call_actions">
-          <button (click)=register() class="btn btn-outline mx-2" translate>Register & Pay</button>
-          <button routerLink='/admin' class="btn btn-outline mx-2" translate>Close</button>
+          <button (click)=register() *ngIf=!paymentDone class="btn btn-outline mx-2" translate>Register & Pay</button>
+          <button routerLink='/dashboard' class="btn btn-outline mx-2" translate>Close</button>
         </div>
       </div>
 

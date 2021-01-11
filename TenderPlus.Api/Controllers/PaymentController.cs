@@ -10,12 +10,11 @@ namespace TenderPlus.Api.Controllers
     [ApiController]
     public class PaymentController : ControllerBase
     {
-        public string orderId;
+        public string orderId { get; set; }
         //[Authorize] 
         [HttpPost]
-        public async Task<ActionResult> payement(Dictionary<string, object> user)
+        public async Task<ActionResult<bool>> payement(Dictionary<string, object> user)
         {
-
             Dictionary<string, object> input = new Dictionary<string, object>();
             input.Add("amount", 100); // this amount should be same as transaction amount
             input.Add("currency", "INR");
@@ -29,7 +28,7 @@ namespace TenderPlus.Api.Controllers
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Razorpay.Api.Order order = client.Order.Create(input);
             orderId = order["id"].ToString();
-            return Ok(orderId);
+            return Ok(true);
         }
     }
 }

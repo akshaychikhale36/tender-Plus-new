@@ -17,7 +17,6 @@ export class PaymentService {
 
     return this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/payment', options)
       .pipe(
-        //tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
       );
   }

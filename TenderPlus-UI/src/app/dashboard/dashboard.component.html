@@ -2,14 +2,14 @@
 <div class="container ">
   <div>
     <div class="row ">
-      <div class="col-md-6 col-lg-4 column" *ngFor="let items of count;let id = index">
+      <div class="col-md-6 col-lg-4 column" *ngFor="let items of tender;let id = index">
         <div class="card gr-3">
           <div class="txt">
-            <h1>BRANDING AND <br>
-              CORPORATE DESIGN</h1>
-            <p>Visual communication and problem-solving</p>
+            <h1>{{items.title}} <br>
+              </h1>
+            <p>{{items.description}}</p>
           </div>
-          <a routerLink='/makebidding'>more</a>
+          <a routerLink='/viewtender' [state]=items>more</a>
           <div class="ico-card">
             <i class="fa fa-rebel"></i>
           </div>
