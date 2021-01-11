@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -28,8 +28,10 @@ export class TenderService {
         );
     }
     DeleteTender(tender:Tender): Observable<any> {
+      const params = new HttpParams()
+      .set('id', tender.id.toString());
 
-      return this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/update',tender)
+      return this._http.delete(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/'+tender.id  )
         .pipe(
           catchError(this.handleError)
         );

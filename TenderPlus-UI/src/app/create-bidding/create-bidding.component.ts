@@ -26,9 +26,6 @@ export class CreateBiddingComponent implements OnInit {
     return localStorage.getItem("id");
   }
   save() {
-    // var title = 'Alert';
-    // var body = 'Created Sucessfully';
-    // this.alertPopupComponent.alertMessage(title, body);
     this.tender.bidding.reporteeId= Number( this.id)
     this.ngxService.start();
     this.tenderService.createTender(this.tender).subscribe(

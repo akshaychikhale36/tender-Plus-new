@@ -13,7 +13,7 @@
       <div class="card-box" >
         <div class="card-box-body">
           <!-- Invoice List-->
-          <table id="EiscWorkList" class="table table-bordered table-responsive-sm" datatable [dtOptions]="dtOptions">
+          <table id="EiscWorkList" class="table table-bordered table-responsive-sm" datatable [dtOptions]="dtOptions" *ngIf="tender?.length > 0">
             <thead>
               <tr>
                 <th width="30px">Sr. No.</th>
@@ -46,6 +46,7 @@
     </div>
   </div>
   <ngx-ui-loader></ngx-ui-loader>
+  <app-alert-popup></app-alert-popup>
 
 
 

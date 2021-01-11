@@ -53,6 +53,13 @@ namespace TenderPlus.DBInfra.Manager
                 .ToListAsync();
         }
 
+        public async Task<bool> UpdateBidding(Bidding biddingRequest)
+        {
+            _tenderPlusDBContext.Bidding.Update(biddingRequest);
+            _tenderPlusDBContext.SaveChanges();
+            return true;
+        }
+
         public async Task<bool> UpdateTender(Tender tenderRequest)
         {
             _tenderPlusDBContext.Tender.Update(tenderRequest);

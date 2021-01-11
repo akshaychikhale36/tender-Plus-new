@@ -69,8 +69,17 @@ namespace TenderPlus.Core.Manager
             }
             else
             {
+                Bidding biddingRequest = new Bidding()
+                {
+                    TenderId = tender.Bidding.TenderId,
+                    InititalBid = tender.Bidding.InititalBid,
+                    EndTime = tender.Bidding.EndTime,
+                    StartTime = tender.Bidding.StartTime,
+                    ReporteeId = tender.Bidding.ReporteeId,
+                };
                 tenderRequest.Id = tender.Id;
-                return await _tenderDBManager.UpdateTender(tenderRequest);
+                 await _tenderDBManager.UpdateTender(tenderRequest);
+                return await _tenderDBManager.UpdateBidding(biddingRequest);
             }
           
         }

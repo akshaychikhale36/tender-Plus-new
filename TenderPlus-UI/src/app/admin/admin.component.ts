@@ -20,6 +20,7 @@ export class AdminComponent implements OnInit {
   tenderpolu: Tender = {};
 
   worklist: any;
+  res: any;
   // tender:Tender={};
   constructor(
     private router: Router,
@@ -74,6 +75,31 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['/editbidding'],{state:tender});
   }
   redirectDelete(tender: Tender) {
-    this.router.navigate(['/viewbidding'],{state:tender});
-  }
+    this.ngxService.start();
+    this.tenderService.DeleteTender(tender).subscribe(
+      (res) => {
+        this.ngxService.stop();
+        this.res = res;
+        if (!res) {
+          var title = 'Alert';
+          var body = 'Delete Unsuccessful';
+          this.alertPopupComponent.alertMessage(title, body);
+        }
+        else {
+          var index = this.tender.indexOf(tender);
+          this.tender.splice(index, 1);
+          var title = 'Alert';
+          var body = ' Deleted Sucessfully';
+          this.alertPopupComponent.alertMessage(title, body);
+        }
+      },
+      (error) => {
+        this.ngxService.stop();
+        var title = 'Alert';
+        var body = 'Please create again';
+        this.alertPopupComponent.alertMessage(title, body);
+        console.log(error);
+      }
+    )}
+
 }
