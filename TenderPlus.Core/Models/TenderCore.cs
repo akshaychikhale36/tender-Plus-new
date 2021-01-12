@@ -21,5 +21,6 @@ namespace TenderPlus.Core.Models
         public string Pin { get; set; }
 
         public BiddingCore Bidding { get; set; }
+        public ICollection<TenderUsersCore> TenderUsers { get; set; }
     }
 }

@@ -87,7 +87,7 @@ export class ViewTenderComponent implements OnInit {
           var body = 'Payment Sucessful';
           this.alertPopupComponent.alertMessage(title, body);
           this.request.tenderId=this.tender.id
-          this.request.registeredUsers=Number(this.userId)
+          this.request.userId=Number(this.userId)
           this.ngxService.start();
 
           this.tenderService.CreateTenderUsers(this.request).subscribe(

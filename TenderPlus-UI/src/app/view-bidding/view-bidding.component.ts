@@ -17,7 +17,7 @@ export class ViewBiddingComponent implements OnInit {
   @ViewChild(AlertPopupComponent) alertPopupComponent;
   tender: Tender = {};
   @ViewChild('dataTable') table;
-  users: registerUsers;
+  users: Tender;
   user: register = {};
   dtOptions: DataTables.Settings = {};
   constructor(private router: Router,private tenderService:TenderService,private ngxService:NgxUiLoaderService) { }

@@ -87,9 +87,9 @@ namespace TenderPlus.Api.Controllers
 
         [HttpGet]
         [Route("getregisters/{tenderid}")]
-        public async Task<ActionResult<IEnumerable<TenderUsersCore>>> GetRegisters(int tenderid)
+        public async Task<ActionResult<TenderCore>> GetRegisters(int tenderid)
         {
-            IEnumerable<TenderUsersCore> result = await _tenderCore.GetRegisters(tenderid);
+            TenderCore result = await _tenderCore.GetRegisters(tenderid);
             return Ok(result);
         }
 

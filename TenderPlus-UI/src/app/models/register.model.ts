@@ -3,9 +3,9 @@ import { Tender } from './tender.model';
 export  class registerUsers {
   id? :number;
   tenderId ?:Number;
-  registeredUsers ?:Number;
+  userId ?:Number;
 
-  registeredUsersNavigation ?:register[];
+  user ?:register;
   tender?:Tender;
 }
 export  class register {

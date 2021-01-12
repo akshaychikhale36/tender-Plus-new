@@ -1,4 +1,5 @@
 import { bidding } from './bidding.model'
+import { registerUsers } from './register.model'
 
 export class Tender {
   id?: Number
@@ -14,5 +15,6 @@ export class Tender {
   district?: string
   pin?: string
   bidding?: bidding
+  tenderUsers?:registerUsers
 }
 

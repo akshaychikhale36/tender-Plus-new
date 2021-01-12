@@ -11,6 +11,6 @@ namespace TenderPlus.Core.Manager
         Task<bool> DeleteTender(int id);
         Task<IEnumerable<TenderCore>> GetTenderList();
         Task<bool> RegisterTender(int tenderid, int userid);
-        Task<IEnumerable<TenderUsersCore>> GetRegisters(int tenderid);
+        Task<TenderCore> GetRegisters(int tenderid);
     }
 }

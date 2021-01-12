@@ -120,12 +120,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let items of users.registeredUsersNavigation; let id = index">
+                  <tr *ngFor="let items of users.tenderUsers; let id = index">
                     <td>{{ id + 1 }}</td>
-                    <td>{{ items.name}}</td>
-                    <td>{{ items.companyName   }}</td>
-                    <td>{{ items.telephone }}</td>
-                    <td>{{ items.email}}</td>
+                    <td>{{ items.user.name}}</td>
+                    <td>{{ items.user.companyName   }}</td>
+                    <td>{{ items.user.telephone }}</td>
+                    <td>{{ items.user.email}}</td>
                   </tr>
                 </tbody>
               </table>
