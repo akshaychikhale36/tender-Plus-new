@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -76,9 +77,21 @@ namespace TenderPlus.Api.Controllers
            
         }
 
-        private bool TenderExists(int id)
+        [HttpPost]
+        [Route("tenderregister")]
+        public async Task<IActionResult> RegisterTender(TenderUsersCore tenderCore)
         {
-            return _context.Tender.Any(e => e.Id == id);
+            bool result = await _tenderCore.RegisterTender(tenderCore.TenderId,tenderCore.RegisteredUsers);
+            return Ok(result);
         }
+
+        [HttpGet]
+        [Route("getregisters/{tenderid}")]
+        public async Task<ActionResult<IEnumerable<TenderUsersCore>>> GetRegisters(int tenderid)
+        {
+            IEnumerable<TenderUsersCore> result = await _tenderCore.GetRegisters(tenderid);
+            return Ok(result);
+        }
+
     }
 }

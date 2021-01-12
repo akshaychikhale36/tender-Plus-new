@@ -41,6 +41,8 @@ export class AdminComponent implements OnInit {
     this.getWorklist()
     // this.populateData();
   }
+
+
   getWorklist() {
     this.ngxService.start();
     this.tenderService.GetTenders().subscribe(

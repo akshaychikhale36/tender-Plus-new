@@ -30,43 +30,43 @@ export class RegisterComponent implements OnInit {
     } else {
       this.registerform.Role = "Normal";
     }
-    if (!this.registerform.user.Name) {
+    if (!this.registerform.user.name) {
       var title = 'Alert';
       var body = 'Please enter name';
       this.alertPopupComponent.alertMessage(title, body);
       return false
     } else
-      if (!this.registerform.user.Email) {
+      if (!this.registerform.user.email) {
         var title = 'Alert';
         var body = 'Please enter Email Id';
         this.alertPopupComponent.alertMessage(title, body);
         return false
       } else
-        if (!this.registerform.user.Telephone) {
+        if (!this.registerform.user.telephone) {
           var title = 'Alert';
           var body = 'Please enter Telephone Number';
           this.alertPopupComponent.alertMessage(title, body);
           return false
         } else
-          if (!this.registerform.user.CompanyName) {
+          if (!this.registerform.user.companyName) {
             var title = 'Alert';
             var body = 'Please enter Company name';
             this.alertPopupComponent.alertMessage(title, body);
             return false
           } else
-            if (!this.registerform.user.License) {
+            if (!this.registerform.user.license) {
               var title = 'Alert';
               var body = 'Please enter License Number ';
               this.alertPopupComponent.alertMessage(title, body);
               return false
             } else
-              if (!this.registerform.user.PanId) {
+              if (!this.registerform.user.panId) {
                 var title = 'Alert';
                 var body = 'Please enter Pan Number';
                 this.alertPopupComponent.alertMessage(title, body);
                 return false
               } else
-                if (!this.registerform.user.Aadhar) {
+                if (!this.registerform.user.aadhar) {
                   var title = 'Alert';
                   var body = 'Please enter Aadhar Number';
                   this.alertPopupComponent.alertMessage(title, body);
@@ -79,7 +79,7 @@ export class RegisterComponent implements OnInit {
       return false
     }
 
-    this.registerform.UserName = this.registerform.user.Name;
+    this.registerform.UserName = this.registerform.user.name;
 
 
 

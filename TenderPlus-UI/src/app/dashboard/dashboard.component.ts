@@ -8,7 +8,7 @@ import { AlertPopupComponent } from '../shared/alert-popup/alert-popup.component
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss','./dashboard.css']
 })
 export class DashboardComponent implements OnInit {
 count:number[];

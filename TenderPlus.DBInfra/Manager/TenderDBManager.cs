@@ -45,12 +45,27 @@ namespace TenderPlus.DBInfra.Manager
             return true;
         }
 
+        public async Task<IEnumerable<TenderUsers>> GetRegisters(int tenderid)
+        {
+            return await _tenderPlusDBContext.TenderUsers
+                .Include(x => x.RegisteredUsersNavigation)
+                .Where(x => x.TenderId == tenderid)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<Tender>> GetTenders()
         {
             return await _tenderPlusDBContext.Tender
                 .Include(x=>x.Bidding)
                 .Where(x=>x.Assignee==null)
                 .ToListAsync();
+        }
+
+        public async Task<bool> RegisterTender(TenderUsers tenderUsers)
+        {
+            await _tenderPlusDBContext.TenderUsers.AddAsync(tenderUsers);
+            await _tenderPlusDBContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<bool> UpdateBidding(Bidding biddingRequest)

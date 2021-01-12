@@ -5,6 +5,11 @@ namespace TenderPlus.DBInfra.Models
 {
     public partial class Tender
     {
+        public Tender()
+        {
+            TenderUsers = new HashSet<TenderUsers>();
+        }
+
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -20,5 +25,6 @@ namespace TenderPlus.DBInfra.Models
         public string Pin { get; set; }
 
         public virtual Bidding Bidding { get; set; }
+        public virtual ICollection<TenderUsers> TenderUsers { get; set; }
     }
 }

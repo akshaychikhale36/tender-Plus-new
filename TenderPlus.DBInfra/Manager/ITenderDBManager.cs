@@ -12,5 +12,8 @@ namespace TenderPlus.DBInfra.Manager
         Task<bool> DeleteTender(int id);
         Task<IEnumerable<Tender>> GetTenders();
         Task<bool> UpdateBidding(Bidding biddingRequest);
+      
+        Task<bool> RegisterTender(TenderUsers tenderUsers);
+        Task<IEnumerable<TenderUsers>> GetRegisters(int tenderid);
     }
 }

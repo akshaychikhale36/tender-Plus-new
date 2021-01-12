@@ -129,16 +129,19 @@ namespace TenderPlus.DBInfra.Models
 
             modelBuilder.Entity<TenderUsers>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.Property(e => e.RegisteredUsers).HasColumnName("registeredUsers");
 
                 entity.Property(e => e.TenderId).HasColumnName("TenderID");
 
                 entity.HasOne(d => d.RegisteredUsersNavigation)
-                    .WithMany()
+                    .WithMany(p => p.TenderUsers)
                     .HasForeignKey(d => d.RegisteredUsers)
                     .HasConstraintName("FK_TenderUsers_Tender");
+
+                entity.HasOne(d => d.Tender)
+                    .WithMany(p => p.TenderUsers)
+                    .HasForeignKey(d => d.TenderId)
+                    .HasConstraintName("FK_TenderUsers_Tender1");
             });
 
             modelBuilder.Entity<User>(entity =>

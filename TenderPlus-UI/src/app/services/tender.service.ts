@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { EnvService } from '../core/env.service';
+import { registerUsers } from '../models/register.model';
 import { Tender } from '../models/tender.model';
 
 @Injectable({
@@ -39,6 +40,24 @@ export class TenderService {
     GetTenders(): Observable<any> {
 
       return this._http.get(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders')
+        .pipe(
+          catchError(this.handleError)
+        );
+    }
+
+    GetRegisteredUsers(tenderid:Number): Observable<any> {
+      const params = new HttpParams()
+      .set('tenderid', tenderid.toString());
+      return this._http.get(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/getregisters/'+tenderid )
+        .pipe(
+          catchError(this.handleError)
+        );
+    }
+    CreateTenderUsers(request:registerUsers): Observable<any> {
+      // const params = new HttpParams()
+      // .set('tenderid', tenderid.toString())
+      // .set('userid', userid.toString());
+      return this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/tenderregister',request)
         .pipe(
           catchError(this.handleError)
         );

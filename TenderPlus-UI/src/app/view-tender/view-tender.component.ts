@@ -1,8 +1,10 @@
 import { NgZone } from '@angular/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { register } from '../models/register.model';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { register, registerUsers } from '../models/register.model';
 import { Tender } from '../models/tender.model';
+import { TenderService } from '../services/tender.service';
 import { AlertPopupComponent } from '../shared/alert-popup/alert-popup.component';
 import { PaymentService } from './payment.service';
 import { ICustomWindow, WindowRefService } from './window-ref.service';
@@ -42,10 +44,15 @@ export class ViewTenderComponent implements OnInit {
       })
     }
   };
+  userId: string;
+  request:registerUsers={};
+
   constructor(private router: Router,
     private zone: NgZone,
     private winRef: WindowRefService,
-    private payment:PaymentService) {
+    private payment:PaymentService,
+    private tenderService:TenderService,
+    private ngxService: NgxUiLoaderService) {
     this._window = this.winRef.nativeWindow;
   }
 
@@ -60,9 +67,11 @@ export class ViewTenderComponent implements OnInit {
       responsive: true,
       searching: true,
     };
-
+    this.userId=this.getTokenStorage()
   }
-
+  getTokenStorage(): string {
+    return localStorage.getItem("id");
+  }
   register() {
     this.rzp = new this.winRef.nativeWindow['Razorpay'](this.options);
     this.rzp.open();
@@ -77,6 +86,32 @@ export class ViewTenderComponent implements OnInit {
           var title = 'Alert';
           var body = 'Payment Sucessful';
           this.alertPopupComponent.alertMessage(title, body);
+          this.request.tenderId=this.tender.id
+          this.request.registeredUsers=Number(this.userId)
+          this.ngxService.start();
+
+          this.tenderService.CreateTenderUsers(this.request).subscribe(
+            res=>
+            {
+                if(res){
+                  var title = 'Alert';
+                  var body = 'Registered Sucessfully';
+                  this.alertPopupComponent.alertMessage(title, body);
+                }
+                else{
+                  var title = 'Alert';
+                  var body = 'Failed to Register, Refund is in Progress';
+                  this.alertPopupComponent.alertMessage(title, body);
+                }
+            },
+            (error) => {
+              this.ngxService.stop();
+              var title = 'Alert';
+              var body = 'Failed to Register, Refund is in Progress';
+              this.alertPopupComponent.alertMessage(title, body);
+              console.log(error);
+            }
+          )
 
         },
         (error) => {
