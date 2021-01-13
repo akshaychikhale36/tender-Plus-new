@@ -72,7 +72,7 @@ namespace TenderPlus.DBInfra.Manager
         {
             return await _tenderPlusDBContext.Tender            
                .Include(x => x.Bidding)
-               .Where(x => x.Assignee == userId)
+               .Where(x => x.Assignee == userId.ToString())
                .ToListAsync();
         }
 
