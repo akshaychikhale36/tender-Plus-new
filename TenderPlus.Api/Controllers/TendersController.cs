@@ -94,17 +94,17 @@ namespace TenderPlus.Api.Controllers
         }
 
         [HttpGet]
-        [Route("getuserregisters/{tenderid}")]
+        [Route("getuserregisters/{userId}")]
         public async Task<ActionResult<TenderCore>> getUserRegisters( int userId)
         {
-            TenderCore result = await _tenderCore.getUserRegisters( userId);
+            IEnumerable<TenderCore> result = await _tenderCore.getUserRegisters( userId);
             return Ok(result);
         }
         [HttpGet]
-        [Route("getuserassign/{tenderid}")]
+        [Route("getuserassign/{userId}")]
         public async Task<ActionResult<TenderCore>> getUserAssign(int userId)
         {
-            TenderCore result = await _tenderCore.getUserAssign(userId);
+            IEnumerable<TenderCore> result = await _tenderCore.getUserAssign(userId);
             return Ok(result);
         }
     }

@@ -140,6 +140,7 @@ namespace TenderPlus.Api
 
             app.UseEndpoints(endpoints =>
             {
+                
                 endpoints.MapControllers();
             });
         }

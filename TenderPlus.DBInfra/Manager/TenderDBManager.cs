@@ -76,12 +76,11 @@ namespace TenderPlus.DBInfra.Manager
                .ToListAsync();
         }
 
-        public async Task<IEnumerable<Tender>> GetUserTenders(int userId)
+        public async Task<IEnumerable<TenderUsers>> GetUserTenders(int userId)
         {
-            return await _tenderPlusDBContext.Tender
-                .Include(x=>x.TenderUsers.Where(x=>x.UserId==userId))
-                .Include(x => x.Bidding)
-                .Where(x => x.Assignee == null)
+            return await _tenderPlusDBContext.TenderUsers
+                .Include(x=>x.Tender)
+                .ThenInclude(x=>x.Bidding)
                 .ToListAsync();
         }
 

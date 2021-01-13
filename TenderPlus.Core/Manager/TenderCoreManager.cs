@@ -49,8 +49,8 @@ namespace TenderPlus.Core.Manager
 
         public async Task<IEnumerable<TenderCore>> getUserRegisters( int userId)
         {
-            IEnumerable<Tender> res = await _tenderDBManager.GetUserTenders(userId);
-            var result = _mappper.Map<IEnumerable<Tender>, IEnumerable<TenderCore>>(res);
+            IEnumerable<TenderUsers> res = await _tenderDBManager.GetUserTenders(userId);
+            var result = _mappper.Map<IEnumerable<Tender>, IEnumerable<TenderCore>>(res.Select(x=>x.Tender));
             return result;
         }
 
