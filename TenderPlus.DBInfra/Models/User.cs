@@ -9,6 +9,7 @@ namespace TenderPlus.DBInfra.Models
         {
             BiddingAssignee = new HashSet<Bidding>();
             BiddingReportee = new HashSet<Bidding>();
+            TenderUsers = new HashSet<TenderUsers>();
         }
 
         public int Id { get; set; }
@@ -25,5 +26,6 @@ namespace TenderPlus.DBInfra.Models
         public virtual Login IdNavigation { get; set; }
         public virtual ICollection<Bidding> BiddingAssignee { get; set; }
         public virtual ICollection<Bidding> BiddingReportee { get; set; }
+        public virtual ICollection<TenderUsers> TenderUsers { get; set; }
     }
 }

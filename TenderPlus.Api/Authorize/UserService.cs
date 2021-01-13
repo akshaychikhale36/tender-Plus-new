@@ -78,6 +78,7 @@ namespace TenderPlus.Api.Authorize
         public int Id { get; set; }
         public string username { get; set; }
         public string Token { get; set; }
+        public string role { get; set; }
 
 
         public AuthenticateResponse(LoginCore user, string token)
@@ -85,6 +86,7 @@ namespace TenderPlus.Api.Authorize
             Id = user.Id;
             username = user.UserName;
             Token = token;
+            role = user.Role;
         }
 
     }

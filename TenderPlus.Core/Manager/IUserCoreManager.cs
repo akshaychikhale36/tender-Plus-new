@@ -6,8 +6,8 @@ namespace TenderPlus.Core.Manager
     public interface IUserCoreManager
     {
         Task<UserCore> GetUser();
-        Task<UserCore> CreateUser();
+        Task<bool> CreateUser(LoginCore user);
         Task<UserCore> UpdateUser();
-
+        Task<LoginCore> getUserByID(string user);
     }
 }

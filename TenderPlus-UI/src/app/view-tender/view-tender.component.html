@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<body>
+  <app-sub-header></app-sub-header>
+
+  <div class="container-fluid row details">
+    <div class="detailsbody">
+      <div class="row align-items-center justify-content-sm-center mb-1">
+        <h2 class="heading" translate>Tender</h2>
+        <div class="call_actions">
+          <button (click)=register() *ngIf=!paymentDone class="btn btn-outline mx-2" translate>Register & Pay</button>
+          <button routerLink='/dashboard' class="btn btn-outline mx-2" translate>Close</button>
+        </div>
+      </div>
+
+      <!-- Second Card-->
+      <div class="card-box">
+        <div class="card-box-body">
+
+          <!-- ISNAD From-->
+          <div class="card-box space-program mx-3 mt-5">
+            <div class="card-box-header">
+              <div class="project-details">
+                <h2 class="heading" translate>Tender Application Form</h2>
+              </div>
+            </div>
+
+            <form #applicationForm="ngForm">
+              <div class="card-box-body">
+                <div class="row px-4">
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2 ">
+                    <label class="translate" for="" translate>Title</label>
+                    <p>{{tender.title}}</p>
+
+                  </div>
+                  <div class="form-group col-md-6 pr-md-5 px-sm-2 ">
+                    <label class="translate" for="" translate>Description</label>
+                    <p>{{tender.description}}</p>
+
+                  </div>
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2 ">
+                    <label class="translate" for="" translate>Type</label>
+                    <p>{{tender.type}}</p>
+
+                  </div>
+                  <div class="form-group col-md-6 pr-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Reporter</label>
+                    <p>{{tender.reporter}}</p>
+
+                  </div>
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Location</label>
+                    <p>{{tender.location}}</p>
+
+                  </div>
+                  <div class="form-group col-md-6 pr-md-5 px-sm-2">
+                    <label class="translate" for="" translate>State</label>
+                    <p>{{tender.state}}</p>
+
+                  </div>
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2">
+                    <label class="translate" for="" translate>District</label>
+                    <p>{{tender.district}}</p>
+
+                  </div>
+                  <div class="form-group col-md-6 pr-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Pin</label>
+                    <p>{{tender.pin}}</p>
+
+                  </div>
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Start Date</label>
+                    <p>{{tender.startDate}}</p>
+
+                  </div>
+                  <div class="form-group col-md-6 pr-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Start Time</label>
+                    <p>{{tender.bidding?.startTime}}</p>
+
+                  </div>
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Close Date</label>
+                    <p>{{tender.closeDate}}</p>
+
+                  </div>
+                  <div class="form-group col-md-6 pr-md-5 px-sm-2">
+                    <label class="translate" for="" translate>End Time</label>
+                    <p>{{tender.bidding?.endTime}}</p>
+
+                  </div>
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Initital Bid</label>
+                    <p>{{tender.bidding?.inititalBid}}</p>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-alert-popup></app-alert-popup>
+  <ngx-ui-loader></ngx-ui-loader>
+</body>
+
+</html>

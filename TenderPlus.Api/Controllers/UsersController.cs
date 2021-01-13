@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TenderPlus.Api.Authorize;
 using TenderPlus.Core.Manager;
+using TenderPlus.Core.Models;
 using TenderPlus.DBInfra.Models;
+using TenderPlus.Log;
 
 namespace TenderPlus.Api.Controllers
 {
@@ -14,90 +18,38 @@ namespace TenderPlus.Api.Controllers
     {
         private readonly TenderPlusDBContext _context;
         private readonly IUserCoreManager _userCore;
+        private ILogger _logger;
 
-        public UsersController(TenderPlusDBContext context,IUserCoreManager userCore)
+        public UsersController(TenderPlusDBContext context,IUserCoreManager userCore, ILogger logger)
         {
             _context = context;
             _userCore = userCore;
         }
 
         // GET: api/Users
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUser()
-        {
-            return await _context.User.ToListAsync();
-        }
-
-        // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
-        {
-            var user = await _context.User.FindAsync(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
-        }
-
-        // PUT: api/Users/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
-        {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
+      
         // POST: api/Users
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<User>> PostUser(LoginCore user)
         {
-            _context.User.Add(user);
+           
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (UserExists(user.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+                var response = await _userCore.CreateUser(user);
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+                if (response == null)
+                    return BadRequest(new { message = "Error encountered in authorizing." });
+
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.Error("authenticate():" + e);
+                return BadRequest(new { message = "Error encountered in authorizing." });
+            }
         }
 
         // DELETE: api/Users/5
@@ -116,9 +68,48 @@ namespace TenderPlus.Api.Controllers
             return user;
         }
 
-        private bool UserExists(int id)
+        [Authorize]
+        [Route("postadminuser")]
+        [HttpPost]
+        public async Task<ActionResult<User>> PostAdminUser(LoginCore user)
         {
-            return _context.User.Any(e => e.Id == id);
+
+            try
+            {
+                var response = await _userCore.CreateUser(user);
+
+                if (response == null)
+                    return BadRequest(new { message = "Error encountered in authorizing." });
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.Error("authenticate():" + e);
+                return BadRequest(new { message = "Error encountered in authorizing." });
+            }
         }
+
+        [HttpGet]
+        [Route("getuserbyid")]
+        public async Task<ActionResult<LoginCore>> getUserByID(string user)
+        {
+
+            try
+            {
+                LoginCore response = await _userCore.getUserByID(user);
+
+                if (response == null)
+                    return BadRequest(new { message = "Error encountered in authorizing." });
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.Error("authenticate():" + e);
+                return BadRequest(new { message = "Error encountered in authorizing." });
+            }
+        }
+
     }
 }

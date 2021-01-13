@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<body>
+  <app-sub-header></app-sub-header>
+
+  <div class="container-fluid row details">
+    <div class="detailsbody">
+      <div class="row align-items-center justify-content-sm-center mb-1">
+        <h2 class="heading" translate>Tender</h2>
+        <div class="call_actions">
+          <button (click)=save() class="btn btn-outline mx-2" translate>Save</button>
+          <button routerLink='/admin' class="btn btn-outline mx-2" translate>Close</button>
+        </div>
+      </div>
+
+      <!-- Second Card-->
+      <div class="card-box">
+        <div class="card-box-body">
+
+          <!-- ISNAD From-->
+          <div class="card-box space-program mx-3 mt-5">
+            <div class="card-box-header">
+              <div class="project-details">
+                <h2 class="heading" translate>Tender Application Form</h2>
+              </div>
+            </div>
+
+            <form #applicationForm="ngForm">
+              <div class="card-box-body">
+                <div class="row px-4">
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2 ">
+                    <label class="translate" for="" translate>Title</label>
+                    <input type="text" [(ngModel)]=tender.title name="Title" class="form-control translate"
+                      placeholder="Title" />
+                  </div>
+                  <div class="form-group col-md-6 pr-md-5 px-sm-2 ">
+                    <label class="translate" for="" translate>Description</label>
+                    <input type="text" [(ngModel)]=tender.description name="Description" class="form-control translate" id=""
+                      placeholder="Description" >
+                  </div>
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2 ">
+                    <label class="translate" for="" translate>Type</label>
+                    <input type="text" [(ngModel)]=tender.type name="Type"
+                      class="form-control translate" id="" placeholder="Type">
+                  </div>
+                  <div class="form-group col-md-6 pr-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Reporter</label>
+                    <input type="text" [(ngModel)]=tender.reporter name="Reporter"
+                      class="form-control translate" id="" placeholder="Reporter" >
+                  </div>
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Location</label>
+                    <input type="text" [(ngModel)]=tender.location   name="Location"
+                      class="form-control translate" id="" placeholder="Location" >
+                  </div>
+                  <div class="form-group col-md-6 pr-md-5 px-sm-2">
+                    <label class="translate" for="" translate>State</label>
+                    <input type="text" [(ngModel)]=tender.state name="State"
+                      class="form-control translate" id="" placeholder="State" >
+                  </div>
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2">
+                    <label class="translate" for="" translate>District</label>
+                    <input type="text" [(ngModel)]=tender.district name="district"
+                      class="form-control translate" id="" placeholder="District" >
+                  </div>
+                  <div class="form-group col-md-6 pr-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Pin</label>
+                    <input type="text" [(ngModel)]=tender.pin name="Pin"
+                      class="form-control translate" id="" placeholder="Pin" >
+                  </div>
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Start Date</label>
+                    <input type="date" [(ngModel)]=tender.startDate name="StartDate"
+                      class="form-control translate" id="" placeholder="StartDate" >
+                  </div>
+                  <div class="form-group col-md-6 pr-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Start Time</label>
+                    <input type="time" [(ngModel)]=tender.bidding.startTime name="StartTime"
+                      class="form-control translate" id="" placeholder="StartTime" >
+                  </div>
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Close Date</label>
+                    <input type="date" [(ngModel)]=tender.closeDate name="CloseDate"
+                      class="form-control translate" id="" placeholder="CloseDate" >
+                  </div>
+                  <div class="form-group col-md-6 pr-md-5 px-sm-2">
+                    <label class="translate" for="" translate>End Time</label>
+                    <input type="time" [(ngModel)]=tender.bidding.endTime name="EndTime"
+                      class="form-control translate" id="" placeholder="EndTime" >
+                  </div>
+                  <div class="form-group col-md-6 pl-md-5 px-sm-2">
+                    <label class="translate" for="" translate>Initital Bid</label>
+                    <input type="text" [(ngModel)]=tender.bidding.inititalBid name="InititalBid"
+                      class="form-control translate" id="" placeholder="InititalBid" >
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-end sm-mx-auto my-2 mr-1">
+        <!-- <button (click)="SaveIsnadDraft()" class="btn btn-outline mx-2" translate>Save As Draft</button>
+        <a (click)='GenerateIsnadEisc()' class="btn btn-outline mx-2" translate>Generate ISNAD</a>
+        <a [routerLink]="['/EiscIsnadWorklist']" class="btn btn-outline btn-outline-red mx-2" translate>Close</a> -->
+      </div>
+    </div>
+  </div>
+  <app-alert-popup></app-alert-popup>
+  <ngx-ui-loader></ngx-ui-loader>
+</body>
+
+</html>

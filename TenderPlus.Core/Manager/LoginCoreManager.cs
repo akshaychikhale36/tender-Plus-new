@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using TenderPlus.Core.Models;
+using TenderPlus.Core.Provider;
 using TenderPlus.DBInfra.Manager;
 using TenderPlus.DBInfra.Models;
 
@@ -24,6 +25,10 @@ namespace TenderPlus.Core.Manager
 
             var loginDB = _mapper.Map<Login>(login);
             var res = await _loginDBManager.CreateDBLogin(loginDB);
+            if (res== "Success")
+            {
+                SmsProvider.SendSms(login.user.Telephone,"Welcome to Tender + Thanks for joining our services");
+            }
             return res;
         }
 

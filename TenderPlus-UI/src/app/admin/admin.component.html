@@ -1,0 +1,52 @@
+<app-sub-header></app-sub-header>
+
+
+
+  <div class="container-fluid row details">
+    <div class="detailsbody">
+      <div class="row align-items-end justify-content-sm-center">
+        <h2 class="heading" translate>Tender</h2>
+
+      </div>
+
+      <!-- Second Card-->
+      <div class="card-box" >
+        <div class="card-box-body">
+          <!-- Invoice List-->
+          <table id="EiscWorkList" class="table table-bordered table-responsive-sm" datatable [dtOptions]="dtOptions" *ngIf="tender?.length > 0">
+            <thead>
+              <tr>
+                <th width="30px">Sr. No.</th>
+                <th>Title</th>
+                <th width="150px">Location</th>
+                <th>State-District</th>
+                <th>Initital Bid</th>
+                <th>Reporter</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let items of tender; let id = index">
+                <td>{{ id + 1 }}</td>
+                <td>{{ items.title}}</td>
+                <td>{{ items.location  | date }}</td>
+                <td>{{ items.state }}-{{items.district}}</td>
+                <td>{{ items.bidding.inititalBid||'na' }}</td>
+                <td>{{ items.reporter}}</td>
+                <td>
+                  <a (click)="redirectView(items)" class="btn btn-outline-yellow" translate>View</a>
+                  <a (click)="redirectEdit(items)" class="btn btn-outline outline-blue" translate>Edit</a>
+                  <a (click)="redirectDelete(items)" class="btn btn-outline-red " translate>Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ngx-ui-loader></ngx-ui-loader>
+  <app-alert-popup></app-alert-popup>
+
+
+

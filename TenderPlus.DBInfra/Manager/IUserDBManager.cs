@@ -6,7 +6,7 @@ namespace TenderPlus.DBInfra.Manager
     public interface IUserDBManager
     {
         Task<User> GetDBUser();
-        Task<User> CreateDBUser();
+        Task<bool> CreateDBUser(User user);
         Task<User> UpdateDBUser();
     }
 }

@@ -18,6 +18,7 @@ namespace TenderPlus.DBInfra.Models
         public virtual DbSet<Bidding> Bidding { get; set; }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<Tender> Tender { get; set; }
+        public virtual DbSet<TenderUsers> TenderUsers { get; set; }
         public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -37,24 +38,22 @@ namespace TenderPlus.DBInfra.Models
 
                 entity.Property(e => e.TenderId).ValueGeneratedNever();
 
-                entity.Property(e => e.EndTime).HasColumnType("datetime");
+                entity.Property(e => e.EndTime).IsUnicode(false);
 
-                entity.Property(e => e.FinalBid).HasColumnType("money");
+                entity.Property(e => e.FinalBid).IsUnicode(false);
 
-                entity.Property(e => e.InititalBid).HasColumnType("money");
+                entity.Property(e => e.InititalBid).IsUnicode(false);
 
-                entity.Property(e => e.StartTime).HasColumnType("datetime");
+                entity.Property(e => e.StartTime).IsUnicode(false);
 
                 entity.HasOne(d => d.Assignee)
                     .WithMany(p => p.BiddingAssignee)
                     .HasForeignKey(d => d.AssigneeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Bidding_Tender");
 
                 entity.HasOne(d => d.Reportee)
                     .WithMany(p => p.BiddingReportee)
                     .HasForeignKey(d => d.ReporteeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Bidding_User");
 
                 entity.HasOne(d => d.Tender)
@@ -75,6 +74,10 @@ namespace TenderPlus.DBInfra.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Role)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.UserName)
                     .IsRequired()
                     .HasMaxLength(50)
@@ -83,57 +86,62 @@ namespace TenderPlus.DBInfra.Models
 
             modelBuilder.Entity<Tender>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Assignee)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CloseDate).HasColumnType("datetime");
+                entity.Property(e => e.CloseDate).IsUnicode(false);
 
-                entity.Property(e => e.DemoImg)
-                    .IsRequired()
-                    .HasColumnType("image");
+                entity.Property(e => e.DemoImg).HasColumnType("image");
 
                 entity.Property(e => e.Description)
-                    .IsRequired()
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
                 entity.Property(e => e.District)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Location)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Pin).HasColumnType("numeric(6, 0)");
+                entity.Property(e => e.Pin).IsUnicode(false);
 
                 entity.Property(e => e.Reporter)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.StartDate).HasColumnType("datetime");
+                entity.Property(e => e.StartDate).IsUnicode(false);
 
                 entity.Property(e => e.State)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Title)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Type)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<TenderUsers>(entity =>
+            {
+                entity.Property(e => e.TenderId).HasColumnName("TenderID");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.HasOne(d => d.Tender)
+                    .WithMany(p => p.TenderUsers)
+                    .HasForeignKey(d => d.TenderId)
+                    .HasConstraintName("FK_TenderUsers_Tender1");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.TenderUsers)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_TenderUsers_User");
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -149,9 +157,7 @@ namespace TenderPlus.DBInfra.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Avatar)
-                    .IsRequired()
-                    .HasColumnType("image");
+                entity.Property(e => e.Avatar).HasColumnType("image");
 
                 entity.Property(e => e.CompanyName)
                     .IsRequired()
@@ -185,7 +191,6 @@ namespace TenderPlus.DBInfra.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.UserType)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
