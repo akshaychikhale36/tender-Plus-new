@@ -40,6 +40,20 @@ namespace TenderPlus.Core.Manager
             return result;
         }
 
+        public async Task<IEnumerable<TenderCore>> getUserAssign(int userId)
+        {
+            IEnumerable<Tender> res = await _tenderDBManager.getUserAssign(userId);
+            var result = _mappper.Map<IEnumerable<Tender>, IEnumerable<TenderCore>>(res);
+            return result;
+        }
+
+        public async Task<IEnumerable<TenderCore>> getUserRegisters( int userId)
+        {
+            IEnumerable<Tender> res = await _tenderDBManager.GetUserTenders(userId);
+            var result = _mappper.Map<IEnumerable<Tender>, IEnumerable<TenderCore>>(res);
+            return result;
+        }
+
         public async Task<bool> RegisterTender(int tenderid, int userid)
         {
             TenderUsers tenderUsers = new TenderUsers()

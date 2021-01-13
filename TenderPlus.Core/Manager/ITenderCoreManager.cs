@@ -12,5 +12,7 @@ namespace TenderPlus.Core.Manager
         Task<IEnumerable<TenderCore>> GetTenderList();
         Task<bool> RegisterTender(int tenderid, int userid);
         Task<TenderCore> GetRegisters(int tenderid);
+        Task<IEnumerable<TenderCore>> getUserRegisters( int userId);
+        Task<IEnumerable<TenderCore>> getUserAssign(int userId);
     }
 }
