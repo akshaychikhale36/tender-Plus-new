@@ -12,6 +12,7 @@ namespace TenderPlus.DBInfra.Models
         public int? ReporteeId { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
+        public string BiddingDate { get; set; }
 
         public virtual User Assignee { get; set; }
         public virtual User Reportee { get; set; }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,6 +34,12 @@ namespace TenderPlus.Core.Manager
             return result;
         }
 
+        public async Task<int> getTenderBid(int tenderId)
+        {
+            Tender res = await _tenderDBManager.getTenderBid(tenderId);
+            return Convert.ToInt32(res.Bidding.FinalBid);
+        }
+
         public async Task<IEnumerable<TenderCore>> GetTenderList()
         {
             IEnumerable<Tender> res = await _tenderDBManager.GetTenders();
@@ -52,6 +59,17 @@ namespace TenderPlus.Core.Manager
             IEnumerable<TenderUsers> res = await _tenderDBManager.GetUserTenders(userId);
             var result = _mappper.Map<IEnumerable<Tender>, IEnumerable<TenderCore>>(res.Select(x=>x.Tender));
             return result;
+        }
+
+        public async Task<int> postTenderBid(int tenderId, int userId, int finalBid)
+        {
+           
+            Tender res = await _tenderDBManager.postTenderBid( tenderId,  userId,  finalBid);
+            if (res==null)
+            {
+                return 0;
+            }
+            return Convert.ToInt32(res.Bidding.FinalBid);
         }
 
         public async Task<bool> RegisterTender(int tenderid, int userid)
@@ -96,6 +114,7 @@ namespace TenderPlus.Core.Manager
                     EndTime = tender.Bidding.EndTime,
                     StartTime = tender.Bidding.StartTime,
                     ReporteeId = tender.Bidding.ReporteeId,
+                    BiddingDate=tender.Bidding.BiddingDate
                 };
                 return await _tenderDBManager.CreateBidding(bidding);
             }
@@ -108,6 +127,7 @@ namespace TenderPlus.Core.Manager
                     EndTime = tender.Bidding.EndTime,
                     StartTime = tender.Bidding.StartTime,
                     ReporteeId = tender.Bidding.ReporteeId,
+                    BiddingDate = tender.Bidding.BiddingDate
                 };
                 tenderRequest.Id = tender.Id;
                  await _tenderDBManager.UpdateTender(tenderRequest);

@@ -8,4 +8,5 @@ export class bidding {
   reporteeId?: number
   startTime?: string
   endTime?: string
+  biddingDate?: string
 }

@@ -38,6 +38,8 @@ namespace TenderPlus.DBInfra.Models
 
                 entity.Property(e => e.TenderId).ValueGeneratedNever();
 
+                entity.Property(e => e.BiddingDate).IsUnicode(false);
+
                 entity.Property(e => e.EndTime).IsUnicode(false);
 
                 entity.Property(e => e.FinalBid).IsUnicode(false);

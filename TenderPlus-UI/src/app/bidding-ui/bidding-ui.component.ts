@@ -13,7 +13,7 @@ import { AlertPopupComponent } from '../shared/alert-popup/alert-popup.component
 })
 export class BiddingUiComponent implements OnInit {
   @ViewChild(AlertPopupComponent) alertPopupComponent;
-  @ViewChild('cd', { static: false }) private countdown: CountdownComponent;
+  // @ViewChild('cd', { static: false }) private countdown: CountdownComponent;
 
   tender: Tender = {};
   constructor(
@@ -25,7 +25,7 @@ export class BiddingUiComponent implements OnInit {
 
   ngOnInit(): void {
     this.tender = history.state as Tender;
-    this.countdown.begin();
+    // this.countdown.begin();
   }
 
 }

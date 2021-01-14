@@ -26,8 +26,7 @@ namespace TenderPlus.DBInfra.Manager
            var res=await  _tenderPlusDBContext.Tender.AddAsync(tenderRequest);
             _tenderPlusDBContext.SaveChanges();
             return  res.Entity.Id;
-           //_tenderPlusDBContext.SaveChanges();
-           //return true;
+          
         }
 
         public async Task<bool> DeleteTender(int id)
@@ -53,11 +52,14 @@ namespace TenderPlus.DBInfra.Manager
                .ThenInclude(x => x.User)
                .Where(x => x.Id == tenderid).FirstOrDefaultAsync();
                
+        }
 
-            //return await _tenderPlusDBContext.TenderUsers
-            //    .Include(x => x.RegisteredUsersNavigation)
-            //    .Where(x => x.TenderId == tenderid)
-            //    .ToListAsync();
+        public async Task<Tender> getTenderBid(int tenderId)
+        {
+            return await _tenderPlusDBContext.Tender
+               .Include(x => x.Bidding)
+               .Where(x => x.Id == tenderId)
+               .FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<Tender>> GetTenders()
@@ -82,6 +84,23 @@ namespace TenderPlus.DBInfra.Manager
                 .Include(x=>x.Tender)
                 .ThenInclude(x=>x.Bidding)
                 .ToListAsync();
+        }
+
+        public async Task<Tender> postTenderBid(int tenderId, int userId, int finalBid)
+        {
+            var check = await _tenderPlusDBContext.TenderUsers.Where(x => x.TenderId == tenderId && x.UserId == userId).FirstOrDefaultAsync();
+            if (check==null)
+            {
+                return null;
+            }
+            var existing =    await _tenderPlusDBContext.Tender
+               .Include(x => x.Bidding)
+               .Where(x => x.Id == tenderId)
+               .FirstOrDefaultAsync();
+
+            existing.Bidding.FinalBid = finalBid.ToString();
+            _tenderPlusDBContext.SaveChanges();
+            return existing;
         }
 
         public async Task<bool> RegisterTender(TenderUsers tenderUsers)

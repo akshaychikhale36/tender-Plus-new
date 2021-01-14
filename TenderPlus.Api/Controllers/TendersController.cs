@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using TenderPlus.Core.Manager;
 using TenderPlus.Core.Models;
@@ -17,7 +14,7 @@ namespace TenderPlus.Api.Controllers
         private readonly TenderPlusDBContext _context;
         private readonly ITenderCoreManager _tenderCore;
 
-        public TendersController(TenderPlusDBContext context,ITenderCoreManager tenderCore)
+        public TendersController(TenderPlusDBContext context, ITenderCoreManager tenderCore)
         {
             _context = context;
             _tenderCore = tenderCore;
@@ -29,7 +26,7 @@ namespace TenderPlus.Api.Controllers
         {
             IEnumerable<TenderCore> result = await _tenderCore.GetTenderList();
             return Ok(result);
-          
+
         }
 
         // GET: api/Tenders/5
@@ -65,7 +62,7 @@ namespace TenderPlus.Api.Controllers
         public async Task<ActionResult<bool>> PostTender(TenderCore tender)
         {
             bool result = await _tenderCore.CreateTender(tender);
-            return result;         
+            return result;
         }
 
         // DELETE: api/Tenders/5
@@ -74,14 +71,14 @@ namespace TenderPlus.Api.Controllers
         {
             bool result = await _tenderCore.DeleteTender(id);
             return result;
-           
+
         }
 
         [HttpPost]
         [Route("tenderregister")]
         public async Task<IActionResult> RegisterTender(TenderUsersCore tenderCore)
         {
-            bool result = await _tenderCore.RegisterTender(tenderCore.TenderId,tenderCore.RegisteredUsers);
+            bool result = await _tenderCore.RegisterTender(tenderCore.TenderId, tenderCore.RegisteredUsers);
             return Ok(result);
         }
 
@@ -95,9 +92,9 @@ namespace TenderPlus.Api.Controllers
 
         [HttpGet]
         [Route("getuserregisters/{userId}")]
-        public async Task<ActionResult<TenderCore>> getUserRegisters( int userId)
+        public async Task<ActionResult<TenderCore>> getUserRegisters(int userId)
         {
-            IEnumerable<TenderCore> result = await _tenderCore.getUserRegisters( userId);
+            IEnumerable<TenderCore> result = await _tenderCore.getUserRegisters(userId);
             return Ok(result);
         }
         [HttpGet]
@@ -107,5 +104,23 @@ namespace TenderPlus.Api.Controllers
             IEnumerable<TenderCore> result = await _tenderCore.getUserAssign(userId);
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("gettenderbid/{tenderId}")]
+        public async Task<ActionResult<int>> getTenderBid(int tenderId)
+        {
+            int result = await _tenderCore.getTenderBid(tenderId);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("posttenderbid/{tenderId}/{userId}/{finalBid}")]
+        public async Task<ActionResult<int>> postTenderBid(int tenderId, int userId, int finalBid)
+        {
+
+            int result = await _tenderCore.postTenderBid(tenderId, userId, finalBid);
+            return Ok(result);
+        }
+
     }
 }
