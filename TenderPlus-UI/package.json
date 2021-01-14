@@ -36,6 +36,7 @@
     "install": "^0.13.0",
     "jquery": "^3.5.1",
     "material-ui-bootstrap": "^1.0.15",
+    "ngx-countdown": "^11.0.1",
     "ngx-ui-loader": "^10.0.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
