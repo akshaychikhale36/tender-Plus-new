@@ -74,6 +74,23 @@ export class TenderService {
         catchError(this.handleError)
       );
     }
+    gettenderbid(userId: number): Observable<any> {
+      return this._http.get(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/getuserassign/'+userId)
+      .pipe(
+        catchError(this.handleError)
+      );
+    }
+    posttenderbid(tenderId:Number,userId: Number,finalBid: Number): Observable<any> {
+      const params = new HttpParams()
+      .set('tenderId', tenderId.toString())
+      .set('userId', userId.toString())
+      .set('finalBid', finalBid.toString());
+      return this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/getuserassign',userId)
+      .pipe(
+        catchError(this.handleError)
+      );
+    }
+
     private handleError(error: any): Promise<any> {
       console.error('Error: unable to parse response', error);
       return Promise.reject(error.message || error);

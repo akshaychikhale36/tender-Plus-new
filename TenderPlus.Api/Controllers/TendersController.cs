@@ -114,7 +114,7 @@ namespace TenderPlus.Api.Controllers
         }
 
         [HttpPost]
-        [Route("posttenderbid/{tenderId}/{userId}/{finalBid}")]
+        [Route("posttenderbid")]
         public async Task<ActionResult<int>> postTenderBid(int tenderId, int userId, int finalBid)
         {
 
