@@ -10,6 +10,8 @@ import { Tender } from '../models/tender.model';
   providedIn: 'root'
 })
 export class TenderService {
+
+
   private authapiUrl = 'api';
   constructor(private _http: HttpClient,
     private _env: EnvService) { }
@@ -54,13 +56,23 @@ export class TenderService {
         );
     }
     CreateTenderUsers(request:registerUsers): Observable<any> {
-      // const params = new HttpParams()
-      // .set('tenderid', tenderid.toString())
-      // .set('userid', userid.toString());
       return this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/tenderregister',request)
         .pipe(
           catchError(this.handleError)
         );
+    }
+    getuserregisters(userId:number): Observable<any> {
+
+      return this._http.get(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/getuserregisters/'+userId)
+        .pipe(
+          catchError(this.handleError)
+        );
+    }
+    getuserassign(userId: number): Observable<any> {
+      return this._http.get(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/getuserassign/'+userId)
+      .pipe(
+        catchError(this.handleError)
+      );
     }
     private handleError(error: any): Promise<any> {
       console.error('Error: unable to parse response', error);

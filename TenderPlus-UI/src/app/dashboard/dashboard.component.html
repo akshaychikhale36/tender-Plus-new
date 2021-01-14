@@ -1,49 +1,77 @@
 <app-sub-header></app-sub-header>
+<div class="container">
+<div class="tab">
+  <button class="tablinks" (click)="openCity( 'London')">Open Tenders</button>
+  <button class="tablinks" (click)="openCity( 'Paris')">Registered Tender</button>
+  <button class="tablinks" (click)="openCity( 'Tokyo')">Assigned Tender</button>
+</div>
+</div>
 
-
-
-<div class="container ">
-  <div>
-    <div class="row ">
-      <div class="col-md-6 col-lg-4 column" *ngFor="let items of tender;let id = index">
-        <div class="card gr-3">
-          <div class="txt">
-            <h1>{{items.title}} <br>
-              </h1>
-            <p>{{items.description}}</p>
+<!-- Tab content -->
+<div id="London" class="tabcontent">
+  <div class="container ">
+    <div>
+      <div class="row ">
+        <div class="col-md-6 col-lg-4 column" *ngFor="let items of tender;let id = index">
+          <div class="card gr-3">
+            <div class="txt">
+              <h1>{{items.title}} <br>
+                </h1>
+              <p>{{items.description}}</p>
+            </div>
+            <a routerLink='/viewtender' [state]=items>more</a>
+            <div class="ico-card">
+              <i class="fa fa-rebel"></i>
+            </div>
           </div>
-          <a routerLink='/viewtender' [state]=items>more</a>
-          <div class="ico-card">
-            <i class="fa fa-rebel"></i>
-          </div>
         </div>
       </div>
-      <!-- <div class="col-md-6 col-lg-4 column">
-      <div class="card gr-2">
-        <div class="txt">
-          <h1>Web Front-End <br>
-SOLUTIONS</h1>
-          <p>How design is implemented on the web.</p>
-        </div>
-        <a href="#">more</a>
-      <div class="ico-card">
-        <i class="fa fa-codepen"></i>
-      </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-lg-4 column">
-      <div class="card gr-3">
-        <div class="txt">
-          <h1>UX/UI WEBsite <br>AND MOBILE app</h1>
-          <p>User Interface and User Experience Design.</p>
-        </div>
-        <a href="#">more</a>
-      <div class="ico-card">
-        <i class="fa fa-empire"></i>
-      </div>
-      </div>
-    </div> -->
-
     </div>
   </div>
 </div>
+
+<div id="Paris" class="tabcontent">
+  <div class="container ">
+    <div>
+      <div class="row ">
+        <div class="col-md-6 col-lg-4 column" *ngFor="let items of usertender;let id = index">
+          <div class="card gr-2">
+            <div class="txt">
+              <h1>{{items.title}} <br>
+                </h1>
+              <p>{{items.description}}</p>
+            </div>
+            <a routerLink='/makebidding' [state]=items>more</a>
+            <div class="ico-card">
+              <i class="fa fa-codepen"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="Tokyo" class="tabcontent">
+  <div class="container ">
+    <div>
+      <div class="row ">
+        <div class="col-md-6 col-lg-4 column" *ngFor="let items of assigntender;let id = index">
+          <div class="card gr-1">
+            <div class="txt">
+              <h1>{{items.title}} <br>
+                </h1>
+              <p>{{items.description}}</p>
+            </div>
+            <a routerLink='/viewtender' [state]=items>more</a>
+            <div class="ico-card">
+              <i class="fa fa-codepen"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-alert-popup></app-alert-popup>
+<ngx-ui-loader></ngx-ui-loader>

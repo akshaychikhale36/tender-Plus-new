@@ -21,16 +21,16 @@
         <div class="col-lg-8">
           <div class="product-details-content">
             <div class="product-details-header">
-              <h2 class="title">The Breeze Zodiac IX</h2>
+              <h2 class="title">{{tender.title}}</h2>
               <ul>
-                <li>Listing ID: 14076242</li>
-                <li>Item #: 7300-3356862</li>
+                <li>Listing ID: {{tender.id}}</li>
+                <li>Initital Price : {{tender.bidding.inititalBid}}</li>
               </ul>
             </div>
             <ul class="price-table mb-30">
               <li class="header">
                 <h5 class="current">Current Price</h5>
-                <h3 class="price">US $700.00</h3>
+                <h3 class="price">{{tender.bidding.finalBid||0}}</h3>
               </li>
               <li>
                 <span class="details">Buyer's Premium</span>
@@ -101,32 +101,14 @@
               <div class="thumb">
                 <img src="http://pixner.net/sbidu/main/assets/images/product/tab1.png" alt="product">
               </div>
-              <div class="content">Description</div>
+              <div class="content">{{tender.description}}</div>
             </a>
           </li>
 
         </ul>
       </div>
     </div>
-    <!-- <div class="container">
-      <div class="tab-content">
-        <div class="tab-pane fade show active" id="details">
-          <div class="tab-details-content">
-            <div class="header-area">
-              <h3 class="title">2012 Ford Escape Hybrid (Brooklyn, NY 11214)</h3>
 
-              <div class="item">
-                <h5 class="subtitle">NYC Fleet / DCAS units may be located at either of two locations:</h5>
-                <ul>
-                  <li>Brooklyn, NY (1908 Shore Parkway)</li>
-                  <li>Medford, NY (66 Peconic Ave)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
 
   </section>
