@@ -81,8 +81,9 @@ namespace TenderPlus.DBInfra.Manager
         public async Task<IEnumerable<TenderUsers>> GetUserTenders(int userId)
         {
             return await _tenderPlusDBContext.TenderUsers
-                .Include(x=>x.Tender)
+                .Include(x=>x.Tender)                
                 .ThenInclude(x=>x.Bidding)
+                .Where(x => x.UserId == userId)
                 .ToListAsync();
         }
 
@@ -99,6 +100,7 @@ namespace TenderPlus.DBInfra.Manager
                .FirstOrDefaultAsync();
 
             existing.Bidding.FinalBid = finalBid.ToString();
+            existing.Assignee= userId.ToString();
             _tenderPlusDBContext.SaveChanges();
             return existing;
         }
