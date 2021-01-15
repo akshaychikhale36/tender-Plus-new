@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CountdownComponent } from 'ngx-countdown';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { interval, Observable } from 'rxjs';
 import { Tender } from '../models/tender.model';
 import { TenderService } from '../services/tender.service';
 import { AlertPopupComponent } from '../shared/alert-popup/alert-popup.component';
@@ -19,6 +20,7 @@ export class BiddingUiComponent implements OnInit {
   res: any;
   userId: string;
   sec: number;
+  sub: any;
   constructor(
     private router: Router,
     private tenderService: TenderService,
@@ -30,14 +32,21 @@ export class BiddingUiComponent implements OnInit {
     this.tender = history.state as Tender;
     this.userId = this.getTokenStorage()
     this.GetBid();
+    this.callFunction();
 
 this.sec=86400-this.getSecondsToday();
+
     // this.countdown.begin();
+  }
+  ngOnDestroy(){
+    this.sub.unsubscribe();
   }
   getTokenStorage(): string {
     return localStorage.getItem("id");
   }
-
+callFunction(){
+  this.sub=interval(10000).subscribe((val)=>this.GetBid());
+}
   getSecondsToday() {
     var d = new Date();
     return d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
@@ -47,6 +56,9 @@ this.sec=86400-this.getSecondsToday();
       (res) => {
         this.ngxService.stop();
         this.tender.bidding.finalBid = res;
+        if(this.sec==0){
+          this.sub.unsubscribe();
+        }
       },
       (error) => {
         this.ngxService.stop();
