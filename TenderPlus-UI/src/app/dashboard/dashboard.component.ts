@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
 import { Router } from '@angular/router';
+import { ready } from 'jquery';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Tender } from '../models/tender.model';
 import { TenderService } from '../services/tender.service';
@@ -28,8 +30,10 @@ constructor(
   ngOnInit(): void {
     this.count=[1,2,3,4,5,6,7,8,9,8,8]
     this.userId=this.getTokenStorage()
-    this.getWorklist();
     this.getuserregisters();
+    this.getWorklist();
+
+
     this.getuserassign();
 
   }
@@ -60,6 +64,7 @@ constructor(
         this.ngxService.stop();
         this.usertender = res;
 
+        this.usertender=this.usertender.filter(x=>new Date(x.closeDate)>new Date());
       },
       (error) => {
         this.ngxService.stop();
@@ -77,6 +82,8 @@ constructor(
       (res) => {
         this.ngxService.stop();
         this.tender = res;
+        this.tender=this.tender.filter(x=>new Date(x.closeDate)>new Date());
+        this.tender=this.tender.filter(x=>!this.usertender.find(x1=>x1.id===x.id));
       },
       (error) => {
         this.ngxService.stop();

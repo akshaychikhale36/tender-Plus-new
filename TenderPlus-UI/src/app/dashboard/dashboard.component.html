@@ -16,7 +16,7 @@
           <div class="card gr-3">
             <div class="txt">
               <h1>{{items.title}} <br>
-                <!-- {{items.bidding.biddingDate}} -->
+                {{items.bidding.biddingDate|date}}
                 </h1>
               <p>{{items.description}}</p>
             </div>
@@ -39,7 +39,7 @@
           <div class="card gr-2">
             <div class="txt">
               <h1>{{items.title}} <br>
-                {{items.bidding.biddingDate}}
+                {{items.bidding.biddingDate|date}}
                 </h1>
               <p>{{items.description}}</p>
             </div>
