@@ -18,7 +18,7 @@ namespace TenderPlus.Core.Provider
             request.AddParameter("message", message);
             request.AddParameter("language", "english");
             request.AddParameter("route", "p");
-            request.AddParameter("numbers", "+91"+number);// remove +91
+            request.AddParameter("numbers", number);// remove +91
             IRestResponse response =client.Execute(request);
             if (response.IsSuccessful)
             {

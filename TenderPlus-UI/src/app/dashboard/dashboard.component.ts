@@ -43,7 +43,7 @@ constructor(
       (res) => {
         this.ngxService.stop();
         this.assigntender = res;
-        this.assigntender=this.assigntender.filter(x=>!this.usertender.find(x1=>x1.id===x.id));
+        // this.assigntender=this.assigntender.filter(x=>!this.usertender.find(x1=>x1.id===x.id));
       },
       (error) => {
         this.ngxService.stop();

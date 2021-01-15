@@ -1,20 +1,19 @@
-import { NgZone } from '@angular/core';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { register, registerUsers } from '../models/register.model';
+import { registerUsers } from '../models/register.model';
 import { Tender } from '../models/tender.model';
 import { TenderService } from '../services/tender.service';
 import { AlertPopupComponent } from '../shared/alert-popup/alert-popup.component';
-import { PaymentService } from './payment.service';
-import { ICustomWindow, WindowRefService } from './window-ref.service';
+import { PaymentService } from '../view-tender/payment.service';
+import { ICustomWindow, WindowRefService } from '../view-tender/window-ref.service';
 
 @Component({
-  selector: 'app-view-tender',
-  templateUrl: './view-tender.component.html',
-  styleUrls: ['./view-tender.component.css']
+  selector: 'app-your-tender',
+  templateUrl: './your-tender.component.html',
+  styleUrls: ['./your-tender.component.css']
 })
-export class ViewTenderComponent implements OnInit {
+export class YourTenderComponent implements OnInit {
   @ViewChild(AlertPopupComponent) alertPopupComponent;
   private _window: ICustomWindow;
   public rzp: any;
@@ -47,6 +46,7 @@ export class ViewTenderComponent implements OnInit {
   };
   userId: string;
   request:registerUsers={};
+  phoneNumber: any;
 
   constructor(private router: Router,
     private zone: NgZone,
@@ -74,6 +74,7 @@ export class ViewTenderComponent implements OnInit {
     return localStorage.getItem("id");
   }
   register() {
+    this.options.amount=Number(this.tender.bidding.finalBid.toString()+'00')
     this.options.phone=this.userId;
     this.rzp = new this.winRef.nativeWindow['Razorpay'](this.options);
     this.rzp.open();
@@ -90,30 +91,30 @@ export class ViewTenderComponent implements OnInit {
           this.alertPopupComponent.alertMessage(title, body);
           this.request.tenderId=this.tender.id
           this.request.userId=Number(this.userId)
-          this.ngxService.start();
+          // this.ngxService.start();
 
-          this.tenderService.CreateTenderUsers(this.request).subscribe(
-            res=>
-            {
-                if(res){
-                  var title = 'Alert';
-                  var body = 'Registered Sucessfully';
-                  this.alertPopupComponent.alertMessage(title, body);
-                }
-                else{
-                  var title = 'Alert';
-                  var body = 'Failed to Register, Refund is in Progress';
-                  this.alertPopupComponent.alertMessage(title, body);
-                }
-            },
-            (error) => {
-              this.ngxService.stop();
-              var title = 'Alert';
-              var body = 'Failed to Register, Refund is in Progress';
-              this.alertPopupComponent.alertMessage(title, body);
-              console.log(error);
-            }
-          )
+          // this.tenderService.CreateTenderUsers(this.request).subscribe(
+          //   res=>
+          //   {
+          //       if(res){
+          //         var title = 'Alert';
+          //         var body = 'Registered Sucessfully';
+          //         this.alertPopupComponent.alertMessage(title, body);
+          //       }
+          //       else{
+          //         var title = 'Alert';
+          //         var body = 'Failed to Register, Refund is in Progress';
+          //         this.alertPopupComponent.alertMessage(title, body);
+          //       }
+          //   },
+          //   (error) => {
+          //     this.ngxService.stop();
+          //     var title = 'Alert';
+          //     var body = 'Failed to Register, Refund is in Progress';
+          //     this.alertPopupComponent.alertMessage(title, body);
+          //     console.log(error);
+          //   }
+          // )
 
         },
         (error) => {
@@ -123,4 +124,5 @@ export class ViewTenderComponent implements OnInit {
       )
     });
   }
+
 }

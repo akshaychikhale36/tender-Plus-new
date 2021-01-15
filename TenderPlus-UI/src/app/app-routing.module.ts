@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ViewBiddingComponent } from './view-bidding/view-bidding.component';
 import { ViewTenderComponent } from './view-tender/view-tender.component';
+import { YourTenderComponent } from './your-tender/your-tender.component';
 
 
 
@@ -61,6 +62,10 @@ const routes: Routes = [
   {
     path:'makebidding',
     component: BiddingUiComponent
+  },
+  {
+    path:'yourtender',
+    component: YourTenderComponent
   },
   {
     path: '**',

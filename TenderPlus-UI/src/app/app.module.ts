@@ -64,6 +64,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { CountdownModule } from 'ngx-countdown';
+import { YourTenderComponent } from './your-tender/your-tender.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { CountdownModule } from 'ngx-countdown';
     EditBiddingComponent,
     ViewTenderComponent,
     BiddingUiComponent,
+    YourTenderComponent,
 
   ],
   imports: [

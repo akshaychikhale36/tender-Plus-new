@@ -62,11 +62,11 @@
           <div class="card gr-1">
             <div class="txt">
               <h1>{{items.title}} <br>
-                <!-- {{items.bidding.biddingDate}} -->
+                {{items.bidding.biddingDate}}
                 </h1>
               <p>{{items.description}}</p>
             </div>
-            <a routerLink='/viewtender' [state]=items>more</a>
+            <a routerLink='/yourtender' [state]=items>more</a>
             <div class="ico-card">
               <i class="fa fa-codepen"></i>
             </div>
