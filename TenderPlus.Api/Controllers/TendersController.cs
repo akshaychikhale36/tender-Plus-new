@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TenderPlus.Core.Manager;
@@ -115,10 +116,10 @@ namespace TenderPlus.Api.Controllers
 
         [HttpPost]
         [Route("posttenderbid")]
-        public async Task<ActionResult<int>> postTenderBid(int tenderId, int userId, int finalBid)
+        public async Task<ActionResult<int>> postTenderBid([FromForm]string tenderId, [FromForm] string userId, [FromForm] string finalBid)
         {
 
-            int result = await _tenderCore.postTenderBid(tenderId, userId, finalBid);
+            int result = await _tenderCore.postTenderBid(Convert.ToInt32( tenderId), Convert.ToInt32(userId), Convert.ToInt32(finalBid));
             return Ok(result);
         }
 

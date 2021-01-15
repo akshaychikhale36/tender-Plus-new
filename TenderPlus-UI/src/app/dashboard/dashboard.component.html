@@ -11,12 +11,12 @@
 <div id="London" class="tabcontent">
   <div class="container ">
     <div>
-      <div class="row ">
+      <div class="row "  *ngIf="tender.length>0">
         <div class="col-md-6 col-lg-4 column" *ngFor="let items of tender;let id = index">
           <div class="card gr-3">
             <div class="txt">
               <h1>{{items.title}} <br>
-                {{items.bidding.biddingDate}}
+                <!-- {{items.bidding.biddingDate}} -->
                 </h1>
               <p>{{items.description}}</p>
             </div>
@@ -34,7 +34,7 @@
 <div id="Paris" class="tabcontent">
   <div class="container ">
     <div>
-      <div class="row ">
+      <div class="row " *ngIf="usertender.length>0">
         <div class="col-md-6 col-lg-4 column" *ngFor="let items of usertender;let id = index">
           <div class="card gr-2">
             <div class="txt">
@@ -57,12 +57,12 @@
 <div id="Tokyo" class="tabcontent">
   <div class="container ">
     <div>
-      <div class="row ">
+      <div class="row " *ngIf="assigntender.length>0">
         <div class="col-md-6 col-lg-4 column" *ngFor="let items of assigntender;let id = index">
           <div class="card gr-1">
             <div class="txt">
               <h1>{{items.title}} <br>
-                {{items.bidding.biddingDate}}
+                <!-- {{items.bidding.biddingDate}} -->
                 </h1>
               <p>{{items.description}}</p>
             </div>

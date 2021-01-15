@@ -75,17 +75,17 @@ export class TenderService {
       );
     }
     gettenderbid(userId: number): Observable<any> {
-      return this._http.get(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/getuserassign/'+userId)
+      return this._http.get(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/gettenderbid/'+userId)
       .pipe(
         catchError(this.handleError)
       );
     }
     posttenderbid(tenderId:Number,userId: Number,finalBid: Number): Observable<any> {
-      const params = new HttpParams()
-      .set('tenderId', tenderId.toString())
-      .set('userId', userId.toString())
-      .set('finalBid', finalBid.toString());
-      return this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/getuserassign',userId)
+      const params = new FormData();
+      params.append('tenderId', tenderId.toString());
+      params.append('userId', userId.toString());
+      params.append('finalBid', finalBid.toString());
+      return this._http.post(`${this._env.localBaseUrl + this.authapiUrl}` + '/Tenders/posttenderbid',params)
       .pipe(
         catchError(this.handleError)
       );

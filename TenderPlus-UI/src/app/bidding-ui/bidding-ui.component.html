@@ -37,8 +37,8 @@
                 <h5 class="info">10.00%</h5>
               </li>
               <li>
-                <span class="details">Bid Increment (US)</span>
-                <h5 class="info">$50.00</h5>
+                <span class="details">Bid Increment (RS)</span>
+                <h5 class="info">50000.00</h5>
               </li>
             </ul>
             <div class="product-bid-area">
@@ -46,8 +46,8 @@
                 <div class="search-icon">
                   <img src="http://pixner.net/sbidu/main/assets/images/product/search-icon.png" alt="product">
                 </div>
-                <input type="text" placeholder="Enter you bid amount">
-                <button type="submit" class="custom-button">Submit a bid</button>
+                <input type="text" [(ngModel)]=tempBid placeholder="Enter you bid amount" name="tempBid">
+                <button (click)=postBid() class="custom-button">Submit a bid</button>
               </form>
             </div>
           </div>
@@ -57,7 +57,7 @@
             <div class="product-single-sidebar mb-3">
               <h6 class="title">This Auction Ends in:</h6>
               <div class="countdown">
-                <countdown [config]="{leftTime: 30}"></countdown>
+                <countdown [config]="{leftTime: sec}"></countdown>
               </div>
               <div class="side-counter-area">
                 <div class="side-counter-item">
@@ -115,3 +115,4 @@
   <!--============= Product Details Section Ends Here =============-->
 </body>
 <ngx-ui-loader></ngx-ui-loader>
+<app-alert-popup></app-alert-popup>
