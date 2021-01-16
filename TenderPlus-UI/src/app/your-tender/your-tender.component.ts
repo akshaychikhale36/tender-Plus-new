@@ -91,34 +91,35 @@ export class YourTenderComponent implements OnInit {
           this.alertPopupComponent.alertMessage(title, body);
           this.request.tenderId=this.tender.id
           this.request.userId=Number(this.userId)
-          // this.ngxService.start();
+          this.ngxService.start();
 
-          // this.tenderService.CreateTenderUsers(this.request).subscribe(
-          //   res=>
-          //   {
-          //       if(res){
-          //         var title = 'Alert';
-          //         var body = 'Registered Sucessfully';
-          //         this.alertPopupComponent.alertMessage(title, body);
-          //       }
-          //       else{
-          //         var title = 'Alert';
-          //         var body = 'Failed to Register, Refund is in Progress';
-          //         this.alertPopupComponent.alertMessage(title, body);
-          //       }
-          //   },
-          //   (error) => {
-          //     this.ngxService.stop();
-          //     var title = 'Alert';
-          //     var body = 'Failed to Register, Refund is in Progress';
-          //     this.alertPopupComponent.alertMessage(title, body);
-          //     console.log(error);
-          //   }
-          // )
+          this.tenderService.paytenderbid(this.tender.id,Number(this.userId)).subscribe(
+            res=>
+            {
+              this.ngxService.stop();
+                if(res){
+                  var title = 'Alert';
+                  var body = 'Created Sucessfully';
+                  this.alertPopupComponent.alertMessage(title, body);
+                }
+                else{
+                  var title = 'Alert';
+                  var body = 'Failed to Register, Refund is in Progress';
+                  this.alertPopupComponent.alertMessage(title, body);
+                }
+            },
+            (error) => {
+              this.ngxService.stop();
+              var title = 'Alert';
+              var body = 'Failed to Register, Refund is in Progress';
+              this.alertPopupComponent.alertMessage(title, body);
+              console.log(error);
+            }
+          )
 
         },
         (error) => {
-
+          this.ngxService.stop();
           console.log(error);
         }
       )

@@ -10,33 +10,34 @@ import { AlertPopupComponent } from '../shared/alert-popup/alert-popup.component
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss','./dashboard.css']
+  styleUrls: ['./dashboard.component.scss', './dashboard.css']
 })
+
 export class DashboardComponent implements OnInit {
-count:number[];
-@ViewChild(AlertPopupComponent) alertPopupComponent;
-@ViewChild('dataTable') table;
-dtOptions: DataTables.Settings = {};
-tender: Tender[] = [];
-usertender:  Tender[] = [];
+  count: number[];
+  @ViewChild(AlertPopupComponent) alertPopupComponent;
+  @ViewChild('dataTable') table;
+  dtOptions: DataTables.Settings = {};
+  tender: Tender[] = [];
+  usertender: Tender[] = [];
+  Progresstender: Tender[] = [];
   userId: string;
   assigntender: Tender[] = [];
-constructor(
-  private router: Router,
-  private tenderService:TenderService,
-  private ngxService:NgxUiLoaderService
-) { }
+  constructor(
+    private router: Router,
+    private tenderService: TenderService,
+    private ngxService: NgxUiLoaderService
+  ) { }
 
   ngOnInit(): void {
-    this.count=[1,2,3,4,5,6,7,8,9,8,8]
-    this.userId=this.getTokenStorage()
+    this.count = [1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 8]
+    this.userId = this.getTokenStorage()
     this.getuserregisters();
     this.getWorklist();
-
-
     this.getuserassign();
-
+    this.getuserprogresstender();
   }
+
   getuserassign() {
     this.ngxService.start();
     this.tenderService.getuserassign(Number(this.userId)).subscribe(
@@ -47,16 +48,18 @@ constructor(
       },
       (error) => {
         this.ngxService.stop();
-        var title = 'Alert';
-        var body = 'Please create again';
-        this.alertPopupComponent.alertMessage(title, body);
+        // var title = 'Alert';
+        // var body = 'Please create again';
+        // this.alertPopupComponent.alertMessage(title, body);
         console.log(error);
       }
     )
   }
+
   getTokenStorage(): string {
     return localStorage.getItem("id");
   }
+
   getuserregisters() {
     this.ngxService.start();
     this.tenderService.getuserregisters(Number(this.userId)).subscribe(
@@ -64,26 +67,45 @@ constructor(
         this.ngxService.stop();
         this.usertender = res;
 
-        this.usertender=this.usertender.filter(x=>new Date(x.closeDate)>new Date());
+        this.usertender = this.usertender.filter(x => new Date(x.closeDate) > new Date());
       },
       (error) => {
         this.ngxService.stop();
-        var title = 'Alert';
-        var body = 'Please create again';
-        this.alertPopupComponent.alertMessage(title, body);
+        // var title = 'Alert';
+        // var body = 'Please create again';
+        // this.alertPopupComponent.alertMessage(title, body);
         console.log(error);
       }
     )
 
   }
+
+  getuserprogresstender() {
+    this.ngxService.start();
+    this.tenderService.getuserprogresstender(Number(this.userId)).subscribe(
+      (res) => {
+        this.ngxService.stop();
+        this.Progresstender = res;
+        this.usertender = this.usertender.filter(x => new Date(x.closeDate) > new Date());
+      },
+      (error) => {
+        this.ngxService.stop();
+        // var title = 'Alert';
+        // var body = 'Please create again';
+        // this.alertPopupComponent.alertMessage(title, body);
+        console.log(error);
+      }
+    )
+  }
+
   getWorklist() {
     this.ngxService.start();
     this.tenderService.GetTenders().subscribe(
       (res) => {
         this.ngxService.stop();
         this.tender = res;
-        this.tender=this.tender.filter(x=>new Date(x.closeDate)>new Date());
-        this.tender=this.tender.filter(x=>!this.usertender.find(x1=>x1.id===x.id));
+        this.tender = this.tender.filter(x => new Date(x.closeDate) > new Date());
+        this.tender = this.tender.filter(x => !this.usertender.find(x1 => x1.id === x.id));
       },
       (error) => {
         this.ngxService.stop();
@@ -96,7 +118,7 @@ constructor(
 
   }
 
-   openCity(cityName:any) {
+  openCity(cityName: any) {
     // Declare all variables
     var i, tabcontent, tablinks;
 

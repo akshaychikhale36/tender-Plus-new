@@ -78,6 +78,14 @@ namespace TenderPlus.DBInfra.Manager
                .ToListAsync();
         }
 
+        public async Task<IEnumerable<Tender>> getuserprogresstender(int userId)
+        {
+            return await _tenderPlusDBContext.Tender
+               .Include(x => x.Bidding)
+               .Where(x => x.Assignee == string.Concat( userId.ToString(),"-progress"))
+               .ToListAsync();
+        }
+
         public async Task<IEnumerable<TenderUsers>> GetUserTenders(int userId)
         {
             return await _tenderPlusDBContext.TenderUsers
@@ -85,6 +93,24 @@ namespace TenderPlus.DBInfra.Manager
                 .ThenInclude(x=>x.Bidding)
                 .Where(x => x.UserId == userId)
                 .ToListAsync();
+        }
+
+        public async Task<Tender> paytenderbid(int tenderId, int userId)
+        {
+            var check = await _tenderPlusDBContext.TenderUsers.Where(x => x.TenderId == tenderId && x.UserId == userId).FirstOrDefaultAsync();
+            if (check == null)
+            {
+                return null;
+            }
+            var existing = await _tenderPlusDBContext.Tender
+               .Include(x => x.Bidding)
+               .Where(x => x.Id == tenderId)
+               .FirstOrDefaultAsync();
+
+        
+            existing.Assignee = string.Concat(userId.ToString(), "-progress");
+            _tenderPlusDBContext.SaveChanges();
+            return existing;
         }
 
         public async Task<Tender> postTenderBid(int tenderId, int userId, int finalBid)

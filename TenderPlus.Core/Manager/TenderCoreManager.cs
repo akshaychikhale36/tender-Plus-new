@@ -54,11 +54,29 @@ namespace TenderPlus.Core.Manager
             return result;
         }
 
+        public async Task<IEnumerable<TenderCore>> getuserprogresstender(int userId)
+        {
+            IEnumerable<Tender> res = await _tenderDBManager.getuserprogresstender(userId);
+            var result = _mappper.Map<IEnumerable<Tender>, IEnumerable<TenderCore>>(res);
+            return result;
+        }
+
         public async Task<IEnumerable<TenderCore>> getUserRegisters( int userId)
         {
             IEnumerable<TenderUsers> res = await _tenderDBManager.GetUserTenders(userId);
             var result = _mappper.Map<IEnumerable<Tender>, IEnumerable<TenderCore>>(res.Select(x=>x.Tender));
             return result;
+        }
+
+        public async Task<bool> paytenderbid(int tenderId, int userId)
+        {
+            
+            Tender res = await _tenderDBManager.paytenderbid(tenderId, userId);
+            if (res == null)
+            {
+                return false;
+            }
+            return true;
         }
 
         public async Task<int> postTenderBid(int tenderId, int userId, int finalBid)

@@ -19,5 +19,7 @@ namespace TenderPlus.DBInfra.Manager
         Task<IEnumerable<Tender>> getUserAssign(int userId);
         Task<Tender> getTenderBid(int tenderId);
         Task<Tender> postTenderBid(int tenderId, int userId, int finalBid);
+        Task<IEnumerable<Tender>> getuserprogresstender(int userId);
+        Task<Tender> paytenderbid(int tenderId, int userId);
     }
 }

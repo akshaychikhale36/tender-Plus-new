@@ -123,5 +123,24 @@ namespace TenderPlus.Api.Controllers
             return Ok(result);
         }
 
+
+
+        [HttpGet]
+        [Route("getuserprogresstender/{userId}")]
+        public async Task<ActionResult<TenderCore>> getuserprogresstender(int userId)
+        {
+            IEnumerable<TenderCore> result = await _tenderCore.getuserprogresstender(userId);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("paytenderbid")]
+        public async Task<ActionResult<bool>> paytenderbid([FromForm]string tenderId, [FromForm] string userId)
+        {
+
+            bool result = await _tenderCore.paytenderbid(Convert.ToInt32(tenderId), Convert.ToInt32(userId));
+            return Ok(result);
+        }
+
     }
 }

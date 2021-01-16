@@ -4,6 +4,7 @@
   <button class="tablinks" (click)="openCity( 'London')">Open Tenders</button>
   <button class="tablinks" (click)="openCity( 'Paris')">Registered Tender</button>
   <button class="tablinks" (click)="openCity( 'Tokyo')">Assigned Tender</button>
+  <button class="tablinks" (click)="openCity( 'France')">InProgress Tender</button>
 </div>
 </div>
 
@@ -69,6 +70,29 @@
             <a routerLink='/yourtender' [state]=items>more</a>
             <div class="ico-card">
               <i class="fa fa-codepen"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="France" class="tabcontent">
+  <div class="container ">
+    <div>
+      <div class="row "  *ngIf="tender.length>0">
+        <div class="col-md-6 col-lg-4 column" *ngFor="let items of Progresstender;let id = index">
+          <div class="card gr-3">
+            <div class="txt">
+              <h1>{{items.title}} <br>
+                {{items.bidding.biddingDate|date}}
+                </h1>
+              <p>{{items.description}}</p>
+            </div>
+            <a routerLink='/viewtender' [state]=items>more</a>
+            <div class="ico-card">
+              <i class="fa fa-rebel"></i>
             </div>
           </div>
         </div>

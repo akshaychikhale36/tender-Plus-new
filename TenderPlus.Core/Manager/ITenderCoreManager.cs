@@ -16,5 +16,7 @@ namespace TenderPlus.Core.Manager
         Task<IEnumerable<TenderCore>> getUserAssign(int userId);
         Task<int> getTenderBid(int tenderId);
         Task<int> postTenderBid(int tenderId, int userId, int finalBid);
+        Task<IEnumerable<TenderCore>> getuserprogresstender(int userId);
+        Task<bool> paytenderbid(int tenderId, int userId);
     }
 }
