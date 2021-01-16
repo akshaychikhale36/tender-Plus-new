@@ -18,7 +18,7 @@
               <tr>
                 <th width="30px">Sr. No.</th>
                 <th>Title</th>
-                <th width="150px">Location</th>
+                <th width="150px">Bidding Date</th>
                 <th>State-District</th>
                 <th>Initital Bid</th>
                 <th>Reporter</th>
@@ -29,7 +29,7 @@
               <tr *ngFor="let items of tender; let id = index">
                 <td>{{ id + 1 }}</td>
                 <td>{{ items.title}}</td>
-                <td>{{ items.location  | date }}</td>
+                <td>{{ items.bidding.biddingDate  | date }}</td>
                 <td>{{ items.state }}-{{items.district}}</td>
                 <td>{{ items.bidding.inititalBid||'na' }}</td>
                 <td>{{ items.reporter}}</td>

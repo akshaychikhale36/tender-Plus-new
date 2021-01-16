@@ -41,8 +41,9 @@ export class CreateBiddingComponent implements OnInit {
           var title = 'Alert';
           var body = ' created Sucessfully';
           this.alertPopupComponent.alertMessage(title, body);
+            this.tender = {}
           this.tender.bidding = {}
-          this.tender = {}
+
         }
       },
       (error) => {

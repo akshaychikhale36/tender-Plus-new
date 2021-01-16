@@ -117,7 +117,7 @@ namespace TenderPlus.Core.Manager
                 District = tender.District,
                 Description = tender.Description,
                 CloseDate = tender.CloseDate,
-                Type = tender.Location,
+                Type = tender.Type,
                 Assignee = tender.Assignee,
                 //Bidding=bidding
             };

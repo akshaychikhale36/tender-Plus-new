@@ -79,7 +79,7 @@ namespace TenderPlus.Api.Controllers
         [Route("tenderregister")]
         public async Task<IActionResult> RegisterTender(TenderUsersCore tenderCore)
         {
-            bool result = await _tenderCore.RegisterTender(tenderCore.TenderId, tenderCore.RegisteredUsers);
+            bool result = await _tenderCore.RegisterTender(tenderCore.TenderId, tenderCore.UserId);
             return Ok(result);
         }
 

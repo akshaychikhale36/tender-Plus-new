@@ -95,6 +95,7 @@ export class ViewTenderComponent implements OnInit {
           this.tenderService.CreateTenderUsers(this.request).subscribe(
             res=>
             {
+              this.ngxService.start();
                 if(res){
                   var title = 'Alert';
                   var body = 'Registered Sucessfully';
